@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+	<gresource prefix="/com/vysp3r/RetroPlus/icons">
+		<file alias="scalable/actions/book-half-symbolic.svg">book-half.svg</file>
+		<file alias="scalable/actions/funnel-fill-symbolic.svg">funnel-fill.svg</file>
+		<file alias="scalable/actions/search-symbolic.svg">search.svg</file>
+		<file alias="scalable/actions/download-symbolic.svg">download.svg</file>
+		<file alias="scalable/actions/x-lg-symbolic.svg">x-lg.svg</file>
+	</gresource>
+</gresources>

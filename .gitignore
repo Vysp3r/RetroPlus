@@ -1,0 +1,8 @@
+build/
+.flatpak-builder/
+build-dir/
+.vscode
+gdb.sh
+_build/
+.flatpak/
+com.vysp3r.ProtonPlus.flatpak

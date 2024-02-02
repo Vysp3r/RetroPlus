@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+	<schema id="com.vysp3r.RetroPlus" path="/com/vysp3r/RetroPlus/">
+		<key name="download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where downloads will be stored</summary>
+		</key>
+	</schema>
+</schemalist>

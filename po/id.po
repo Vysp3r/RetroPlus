@@ -1,0 +1,251 @@
+# Indonesian translations for com.vysp3r.RetroPlus package.
+# Copyright (C) 2024 THE com.vysp3r.RetroPlus'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.vysp3r.RetroPlus package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.vysp3r.RetroPlus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-02 18:08-0500\n"
+"PO-Revision-Date: 2024-01-21 16:48-0500\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/com.vysp3r.RetroPlus.desktop.in:3
+msgid "RetroPlus"
+msgstr ""
+
+#: data/com.vysp3r.RetroPlus.appdata.xml.in:7
+msgid "No description"
+msgstr ""
+
+#.
+#: src/window.vala:23
+msgid "Loading"
+msgstr ""
+
+#.
+#.
+#: src/window.vala:105 src/window.vala:110
+msgid "An error occured during the initialization."
+msgstr ""
+
+#.
+#: src/window.vala:115
+msgid "An error occured while loading the systems."
+msgstr ""
+
+#.
+#.
+#: src/window.vala:121
+msgid "To fix this problem, you should report this issue on GitHub."
+msgstr ""
+
+#: src/preferences.vala:20
+msgid "Choose the download directory"
+msgstr ""
+
+#.
+#: src/preferences.vala:45
+msgid "Download directory"
+msgstr ""
+
+#.
+#: src/widgets/download-popover.vala:15
+msgid "No download in progress"
+msgstr ""
+
+#: src/widgets/download-row.vala:32
+msgid "Queued"
+msgstr ""
+
+#: src/widgets/download-row.vala:45
+msgid "Starting"
+msgstr ""
+
+#: src/widgets/download-row.vala:49
+msgid "Cancelling"
+msgstr ""
+
+#.
+#.
+#: src/widgets/game-detail-modal.vala:23
+msgid "Close"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:27
+msgid "Download"
+msgstr ""
+
+#.
+#.
+#.
+#: src/widgets/game-detail-modal.vala:72 src/widgets/search-box.vala:64
+#: src/widgets/search-filter-box.vala:17
+msgid "System"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:75 src/widgets/search-box.vala:74
+msgid "Region"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:103
+msgid "Players"
+msgstr ""
+
+#: src/widgets/game-detail-modal.vala:103
+msgid "Simultaneous"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:106
+msgid "Year"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:109
+msgid "Publisher"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:112
+msgid "Serial"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:115
+#: src/widgets/game-detail-modal.vala:220
+msgid "Size"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:118 src/widgets/search-box.vala:79
+msgid "Version"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:147
+msgid "Play online"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:151
+msgid "See manual"
+msgstr ""
+
+#.
+#.
+#.
+#: src/widgets/game-detail-modal.vala:215
+#: src/widgets/game-detail-modal.vala:251
+msgid "CRC"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:216
+#: src/widgets/game-detail-modal.vala:255
+msgid "MD5"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:217
+#: src/widgets/game-detail-modal.vala:260
+msgid "SHA1"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:225
+msgid "Graphics"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:228
+msgid "Sound"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:231
+msgid "Gameplay"
+msgstr ""
+
+#.
+#: src/widgets/game-detail-modal.vala:234
+msgid "Overall"
+msgstr ""
+
+#: src/widgets/game-detail-modal.vala:234
+msgid "votes"
+msgstr ""
+
+#: src/widgets/game-detail-modal.vala:234
+msgid "vote"
+msgstr ""
+
+#.
+#: src/widgets/search-box.vala:35
+msgid "Preferences"
+msgstr ""
+
+#: src/widgets/search-box.vala:36
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: src/widgets/search-box.vala:37
+msgid "About"
+msgstr ""
+
+#: src/widgets/search-box.vala:53
+msgid "Search a game by name"
+msgstr ""
+
+#: src/widgets/search-box.vala:56
+msgid "Advanced filtering options"
+msgstr ""
+
+#.
+#: src/widgets/search-box.vala:69
+msgid "Title"
+msgstr ""
+
+#.
+#: src/widgets/search-box.vala:240
+msgid "An error occured while opening"
+msgstr ""
+
+#: src/widgets/search-box.vala:250
+msgid "download queued"
+msgstr ""
+
+#: src/widgets/search-box.vala:256
+msgid "finished downloading"
+msgstr ""
+
+#: src/widgets/search-box.vala:262
+msgid "download cancelled"
+msgstr ""
+
+#: src/widgets/search-box.vala:268
+msgid "could not download due to an error"
+msgstr ""
+
+#: src/widgets/search-box.vala:274
+msgid " is already downloaded"
+msgstr ""
+
+#.
+#: src/widgets/search-filter-box.vala:33
+msgid "Source"
+msgstr ""
+
+#.
+#: src/widgets/search-row.vala:41
+msgid "Manual available"
+msgstr ""
