@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.vysp3r.RetroPlus</id>
+
+  <name>RetroPlus</name>
+  <summary>A simple ROM downloader</summary>
+  <description>
+    <p>List of supported sources: </p>
+    <ul>
+      <li>Vimm's Lair</li>
+    </ul>
+  </description>
+
+  <launchable type="desktop-id">com.vysp3r.RetroPlus.desktop</launchable>
+
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <content_rating type="oars-1.1" />
+
+  <developer_name>Vysp3r</developer_name>
+  <url type="homepage">https://github.com/Vysp3r/RetroPlus</url>
+  <url type="bugtracker">https://github.com/Vysp3r/RetroPlus/issues</url>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/Vysp3r/RetroPlus/main/data/previews/Preview-1.png</image>
+    </screenshot>
+  </screenshots>
+
+  <releases>
+    <release version="0.1.1" date="2024-02-02">
+      <description>
+        <ul>
+          <li>Fix AppData</li>
+        </ul>
+      </description>
+    </release>
+    <release version="0.1.0" date="2024-02-02">
+      <description>
+        <ul>
+          <li>Initial release</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+</component>
