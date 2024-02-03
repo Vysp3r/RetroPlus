@@ -23,7 +23,8 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/Vysp3r/RetroPlus/main/data/previews/Preview-1.png</image>
+      <image>https://raw.githubusercontent.com/Vysp3r/RetroPlus/v0.1.1/data/previews/Preview-1.png</image>
+      <caption>Preview #1</caption>
     </screenshot>
   </screenshots>
 

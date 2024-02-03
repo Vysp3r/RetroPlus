@@ -4,5 +4,5 @@ Exec=com.vysp3r.RetroPlus
 Icon=com.vysp3r.RetroPlus
 Terminal=false
 Type=Application
-Categories=GTK;
+Categories=Utility;
 StartupNotify=true
