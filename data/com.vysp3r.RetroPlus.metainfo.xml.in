@@ -24,11 +24,18 @@
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/Vysp3r/RetroPlus/v0.1.1/data/previews/Preview-1.png</image>
-      <caption>Preview #1</caption>
+      <caption>Main window</caption>
     </screenshot>
   </screenshots>
 
   <releases>
+    <release version="0.1.2" date="2024-02-02">
+      <description>
+        <ul>
+          <li>Fix AppData</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.1" date="2024-02-02">
       <description>
         <ul>
