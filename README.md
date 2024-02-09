@@ -51,6 +51,12 @@
 
 - - - -
 
+## 🤡 Disclaimer
+
+This content does not endorse or encourage any form of piracy. Engaging in piracy is illegal and can result in severe legal consequences. Users are advised to respect copyright laws, support lawful content distribution, and obtain materials through legal channels. The creators of this content disclaim any responsibility for the misuse or illegal activities related to piracy.
+
+- - - -
+
 ## 📦️ Alternative installation methods
 
 > **Warning**
