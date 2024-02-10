@@ -66,7 +66,7 @@ namespace RetroPlus.Models {
 
                 //
                 var res_valid = Utils.Web.get_request(@"https://vimm.net/vault/?mode=adv&p=list&system=$id&q=$game_title&players=%3E%3D&playersValue=1&simultaneous=&publisher=&year=%3D&yearValue=&rating=%3E%3D&ratingValue=&region=All&sort=Title&sortOrder=ASC", ref res);
-                if (res_valid) {
+                if (!res_valid) {
                     result.request_error = true;
                 } else {
                     //
