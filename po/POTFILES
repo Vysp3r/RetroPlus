@@ -1,5 +1,5 @@
 data/com.vysp3r.RetroPlus.desktop.in
-data/com.vysp3r.RetroPlus.appdata.xml.in
+data/com.vysp3r.RetroPlus.metainfo.xml.in
 src/window.vala
 src/application.vala
 src/preferences.vala
