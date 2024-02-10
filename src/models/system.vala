@@ -48,10 +48,17 @@ namespace RetroPlus.Models {
             return extra_info_loaded = !parsed;
         }
 
-        public async List<Models.Game> get_games_by_title(string game_title) {
+        public class get_games_by_title_result {
+            public List<Models.Game> games;
+            public bool request_error;
+            public bool parsing_error;
+        }
+
+        public async get_games_by_title_result get_games_by_title(string game_title) {
             SourceFunc callback = get_games_by_title.callback;
 
-            var games = new List<Models.Game> ();
+            var result = new get_games_by_title_result();
+            result.games = new List<Models.Game> ();
 
             ThreadFunc<void> run = () => {
                 //
@@ -59,11 +66,15 @@ namespace RetroPlus.Models {
 
                 //
                 var res_valid = Utils.Web.get_request(@"https://vimm.net/vault/?mode=adv&p=list&system=$id&q=$game_title&players=%3E%3D&playersValue=1&simultaneous=&publisher=&year=%3D&yearValue=&rating=%3E%3D&ratingValue=&region=All&sort=Title&sortOrder=ASC", ref res);
-                if (!res_valid)return;
-
-                //
-                var parsing_valid = Utils.Parser.parse_search_request(res, ref games);
-                if (!parsing_valid)return;
+                if (res_valid) {
+                    result.request_error = true;
+                } else {
+                    //
+                    var parsing_valid = Utils.Parser.parse_search_request(res, ref result.games);
+                    if (!parsing_valid) {
+                        result.parsing_error = true;
+                    }
+                }
 
                 //
                 Idle.add((owned) callback);
@@ -74,7 +85,7 @@ namespace RetroPlus.Models {
             new Thread<bool> ("search", (owned) run);
 
             yield;
-            return (owned) games;
+            return result;
         }
 
         public static bool get_systems(ref Gee.HashMap<string, Models.System> systems) {

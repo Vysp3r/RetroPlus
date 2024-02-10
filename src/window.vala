@@ -15,8 +15,8 @@ namespace RetroPlus {
             //
             this.set_application ((Adw.Application) GLib.Application.get_default ());
             this.set_title (Constants.APP_NAME);
-            this.set_size_request (400, 500);
-            this.set_default_size (400, 500);
+            this.set_size_request (410, 500);
+            this.set_default_size (410, 500);
 
             //
             status_box = new Widgets.StatusBox ();

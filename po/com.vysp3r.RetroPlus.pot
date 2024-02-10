@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.vysp3r.RetroPlus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-02 18:08-0500\n"
+"POT-Creation-Date: 2024-02-09 21:49-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/com.vysp3r.RetroPlus.desktop.in:3
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:5
 msgid "RetroPlus"
 msgstr ""
 
-#: data/com.vysp3r.RetroPlus.appdata.xml.in:7
-msgid "No description"
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:6
+msgid "A simple ROM downloader"
+msgstr ""
+
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:8
+msgid "List of supported sources:"
+msgstr ""
+
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:10
+msgid "Vimm's Lair"
+msgstr ""
+
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:20
+msgid "Vysp3r"
+msgstr ""
+
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:27
+msgid "Main window"
+msgstr ""
+
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:35
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:42
+msgid "Fix AppData"
+msgstr ""
+
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:49
+msgid "Initial release"
 msgstr ""
 
 #.
@@ -87,13 +113,13 @@ msgstr ""
 #.
 #.
 #.
-#: src/widgets/game-detail-modal.vala:72 src/widgets/search-box.vala:64
+#: src/widgets/game-detail-modal.vala:72 src/widgets/search-box.vala:65
 #: src/widgets/search-filter-box.vala:17
 msgid "System"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:75 src/widgets/search-box.vala:74
+#: src/widgets/game-detail-modal.vala:75 src/widgets/search-box.vala:75
 msgid "Region"
 msgstr ""
 
@@ -128,7 +154,7 @@ msgid "Size"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:118 src/widgets/search-box.vala:79
+#: src/widgets/game-detail-modal.vala:118 src/widgets/search-box.vala:80
 msgid "Version"
 msgstr ""
 
@@ -191,53 +217,82 @@ msgid "vote"
 msgstr ""
 
 #.
-#: src/widgets/search-box.vala:35
+#: src/widgets/search-box.vala:36
 msgid "Preferences"
 msgstr ""
 
-#: src/widgets/search-box.vala:36
+#: src/widgets/search-box.vala:37
 msgid "Keyboard Shortcuts"
 msgstr ""
 
-#: src/widgets/search-box.vala:37
+#: src/widgets/search-box.vala:38
 msgid "About"
 msgstr ""
 
-#: src/widgets/search-box.vala:53
+#: src/widgets/search-box.vala:54
 msgid "Search a game by name"
 msgstr ""
 
-#: src/widgets/search-box.vala:56
+#: src/widgets/search-box.vala:57
 msgid "Advanced filtering options"
 msgstr ""
 
 #.
-#: src/widgets/search-box.vala:69
+#: src/widgets/search-box.vala:70
 msgid "Title"
 msgstr ""
 
 #.
-#: src/widgets/search-box.vala:240
+#: src/widgets/search-box.vala:95
+msgid "Feels empty in here."
+msgstr ""
+
+#: src/widgets/search-box.vala:95
+msgid "Why not search for a game?"
+msgstr ""
+
+#: src/widgets/search-box.vala:184
+msgid "Can't reach the servers."
+msgstr ""
+
+#: src/widgets/search-box.vala:184
+msgid "Please report this on our GitHub if you think this is a bug."
+msgstr ""
+
+#: src/widgets/search-box.vala:188
+msgid "An unknown error occurred."
+msgstr ""
+
+#: src/widgets/search-box.vala:188
+msgid "Please report this on our GitHub."
+msgstr ""
+
+#: src/widgets/search-box.vala:192
+msgid "Nothing found, try searching again."
+msgstr ""
+
+#.
+#: src/widgets/search-box.vala:265
 msgid "An error occured while opening"
 msgstr ""
 
-#: src/widgets/search-box.vala:250
+#: src/widgets/search-box.vala:275
 msgid "download queued"
 msgstr ""
 
-#: src/widgets/search-box.vala:256
+#: src/widgets/search-box.vala:281
 msgid "finished downloading"
 msgstr ""
 
-#: src/widgets/search-box.vala:262
+#: src/widgets/search-box.vala:287
 msgid "download cancelled"
 msgstr ""
 
-#: src/widgets/search-box.vala:268
+#: src/widgets/search-box.vala:293
 msgid "could not download due to an error"
 msgstr ""
 
-#: src/widgets/search-box.vala:274
+#: src/widgets/search-box.vala:299
 msgid " is already downloaded"
 msgstr ""
 
