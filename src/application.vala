@@ -32,7 +32,7 @@ namespace RetroPlus {
             about_action.activate.connect (this.show_about_dialog);
             this.add_action (about_action);
 
-            // Register the action to display the about dialog
+            // Register the action to display the preferences dialog
             var preferences_action = new SimpleAction ("show-preferences", null);
             preferences_action.activate.connect (this.show_preferences_dialog);
             this.add_action (preferences_action);

@@ -6,8 +6,9 @@ namespace RetroPlus.Widgets {
         Gtk.Spinner spinner { get; set; }
         DownloadPopover download_popover { get; set; }
         Adw.ToastOverlay toast_overlay { get; set; }
-        List<Models.Game> search_results;
+        Models.System.get_games_by_title_result search_results;
         Gtk.Label system_label { get; set; }
+        Adw.StatusPage status_page { get; set; }
 
         public SearchBox (SearchFilterBox search_filter_box) {
             Object (search_filter_box: search_filter_box);
@@ -90,6 +91,12 @@ namespace RetroPlus.Widgets {
             legend_box.append (version_label);
 
             //
+            status_page = new Adw.StatusPage ();
+            status_page.set_description (_("Feels empty in here.") + "\n" + _("Why not search for a game?"));
+            status_page.set_icon_name ("search-symbolic");
+            status_page.set_valign (Gtk.Align.CENTER);
+
+            //
             games_list = new Gtk.ListBox ();
             games_list.set_activate_on_single_click (false);
             games_list.set_selection_mode (Gtk.SelectionMode.SINGLE);
@@ -114,6 +121,7 @@ namespace RetroPlus.Widgets {
             var overlay = new Gtk.Overlay ();
             overlay.set_child (scrolled_window);
             overlay.add_overlay (spinner);
+            overlay.add_overlay (status_page);
 
             //
             var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
@@ -145,6 +153,9 @@ namespace RetroPlus.Widgets {
 
         void on_search_entry_activated () {
             //
+            if (status_page.get_visible ())status_page.set_visible (false);
+
+            //
             spinner.start ();
 
             //
@@ -168,12 +179,26 @@ namespace RetroPlus.Widgets {
                 search_results = system.get_games_by_title.end (res);
 
                 //
-                foreach (var game in search_results) {
-                    //
-                    var row = new SearchRow (game, system.id == "");
+                if (search_results.request_error) {
+                    status_page.set_icon_name ("wifi-off-symbolic");
+                    status_page.set_description (_("Can't reach the servers.") + "\n" + _("Please report this on our GitHub if you think this is a bug."));
+                    status_page.set_visible (true);
+                } else if (search_results.parsing_error) {
+                    status_page.set_icon_name ("bug-symbolic");
+                    status_page.set_description (_("An unknown error occurred.") + "\n" + _("Please report this on our GitHub."));
+                    status_page.set_visible (true);
+                } else if (search_results.games == null) {
+                    status_page.set_icon_name ("emoji-frown-symbolic");
+                    status_page.set_description (_("Nothing found, try searching again."));
+                    status_page.set_visible (true);
+                } else {
+                    foreach (var game in search_results.games) {
+                        //
+                        var row = new SearchRow (game, system.id == "");
 
-                    //
-                    games_list.append (row);
+                        //
+                        games_list.append (row);
+                    }
                 }
 
                 //
@@ -196,7 +221,7 @@ namespace RetroPlus.Widgets {
             if (row == null)return;
 
             //
-            var game = search_results.nth_data (row.get_index ());
+            var game = search_results.games.nth_data (row.get_index ());
 
             //
             if (game == null)return;

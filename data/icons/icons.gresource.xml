@@ -6,5 +6,8 @@
 		<file alias="scalable/actions/search-symbolic.svg">search.svg</file>
 		<file alias="scalable/actions/download-symbolic.svg">download.svg</file>
 		<file alias="scalable/actions/x-lg-symbolic.svg">x-lg.svg</file>
+		<file alias="scalable/actions/wifi-off-symbolic.svg">wifi-off.svg</file>
+		<file alias="scalable/actions/emoji-frown-symbolic.svg">emoji-frown.svg</file>
+		<file alias="scalable/actions/bug-symbolic.svg">bug.svg</file>
 	</gresource>
 </gresources>

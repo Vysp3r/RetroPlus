@@ -13,6 +13,7 @@ namespace RetroPlus.Utils {
 
         public static bool parse_search_request (string res, ref List<Models.Game> games) {
             if (res.length == 0)return false;
+            if (res.contains ("No matches found."))return true;
 
             var start_text = "</caption>";
             var start = res.index_of (start_text, res.index_of (start_text) + start_text.length);
@@ -21,8 +22,6 @@ namespace RetroPlus.Utils {
             var end = res.index_of (end_text, start);
 
             var temp_list = res.substring (start + start_text.length, res.length - start - start_text.length - (res.length - end));
-
-            if (temp_list.contains ("No matches found."))return true;
 
             var offset = res.contains (">System</td>") ? 1 : 0;
 
