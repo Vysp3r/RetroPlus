@@ -1,9 +1,11 @@
 [Desktop Entry]
 # Translator: Translate as `RetroPlus`
 Name=RetroPlus
+Comment=A simple ROM downloader
 Exec=com.vysp3r.RetroPlus
 Icon=com.vysp3r.RetroPlus
 Terminal=false
 Type=Application
-Categories=Utility;
+Categories=Utility;Game;Emulator;
+Keywords=game;rom;emulator;download;
 StartupNotify=true
