@@ -24,11 +24,21 @@ namespace RetroPlus {
             //
             sources_model.remove_all ();
 
+            var current_source_position = 0;
+
             sources.foreach ((source) => {
                 sources_model.append (source);
 
+                if (Application.settings.get_string ("default-source") == source.title) {
+                    sources_row.set_selected (current_source_position);
+                }
+
+                current_source_position++;
+
                 return true;
             });
+
+
 
             //
             systems_model.remove_all ();
@@ -56,9 +66,7 @@ namespace RetroPlus {
             sources_row.set_title (_("Choose a source"));
             sources_row.set_factory (sources_factory);
             sources_row.set_model (sources_model);
-
-            //
-            Application.settings.bind ("default-source", sources_row, "text", GLib.SettingsBindFlags.DEFAULT);
+            sources_row.notify["selected-item"].connect (on_sources_row_selected_item);
 
             //
             var default_source_group = new Adw.PreferencesGroup ();
@@ -67,6 +75,12 @@ namespace RetroPlus {
 
             //
             return default_source_group;
+        }
+
+        void on_sources_row_selected_item () {
+            var source = (Models.Source) sources_row.get_selected_item ();
+
+            Application.settings.set_string ("default-source", source.title);
         }
 
         void sources_factory_bind (Gtk.SignalListItemFactory factory, Object item) {
