@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>com.vysp3r.RetroPlus</id>
 
-  <name>RetroPlus</name>
+  <name translatable="no">RetroPlus</name>
   <summary>A simple ROM downloader</summary>
   <description>
     <p>List of supported sources: </p>
