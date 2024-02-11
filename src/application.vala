@@ -2,8 +2,14 @@ namespace RetroPlus {
     public class Application : Adw.Application {
         public static Settings settings;
 
+        Gee.HashMap<string, Models.Source> sources;
         Gee.HashMap<string, Models.System> systems;
-        List<Models.Source> sources;
+
+        Gee.Iterator<Models.Source> get_sources_ordered_by_name () {
+            return sources.values.order_by ((a, b) => {
+                return strcmp (a.title, b.title);
+            });
+        }
 
         Gee.Iterator<Models.System> get_systems_ordered_by_name () {
             return systems.values.order_by ((a, b) => {
@@ -57,6 +63,22 @@ namespace RetroPlus {
             sources = Models.Source.get_sources ();
 
             //
+            var ordered_sources = get_sources_ordered_by_name ();
+            ordered_sources.next ();
+
+            var first_source = ordered_sources.get ();
+
+            //
+            var default_source = Application.settings.get_string ("default-source");
+            if (default_source == "") {
+                Application.settings.set_string ("default-source", first_source.title);
+            } else if (!sources.has_key (Application.settings.get_string ("default-source"))) {
+                default_source = first_source.title;
+                message (@"The default-source setting was invalid therefore it was reset to '$default_source'");
+                Application.settings.set_string ("default-source", default_source);
+            }
+
+            //
             systems = Models.System.get_systems ();
 
             //
@@ -73,7 +95,7 @@ namespace RetroPlus {
             //
             var main_window = new MainWindow ();
             main_window.set_application (this);
-            main_window.initialize (get_systems_ordered_by_name (), sources);
+            main_window.initialize (get_sources_ordered_by_name (), get_systems_ordered_by_name ());
             main_window.present ();
         }
 
@@ -98,7 +120,7 @@ namespace RetroPlus {
         void show_preferences_dialog () {
             var preferences_dialog = new PreferencesDialog ();
             preferences_dialog.set_transient_for (this.get_active_window ());
-            preferences_dialog.initialize (get_systems_ordered_by_name ());
+            preferences_dialog.initialize (get_sources_ordered_by_name (), get_systems_ordered_by_name ());
             preferences_dialog.present ();
         }
 

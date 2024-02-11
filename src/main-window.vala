@@ -151,8 +151,8 @@ namespace RetroPlus {
             this.set_content (toolbar_view);
         }
 
-        public void initialize (Gee.Iterator<Models.System> systems, List<Models.Source> sources) {
-            search_filter_box.initialize (systems, sources);
+        public void initialize (Gee.Iterator<Models.Source> sources, Gee.Iterator<Models.System> systems) {
+            search_filter_box.initialize (sources, systems);
         }
 
         void on_download_button_clicked () {

@@ -108,7 +108,7 @@ namespace RetroPlus.Models {
                 if (console_ids[i] == "32X")setting_name = "sega-".concat(setting_name); // Custom rule since a setting cannot start with a number
 
                 system = new System(console_ids[i], console_names[i], false, console_years[i], setting_name);
-                systems.set(console_names[i], system);
+                systems.set(system.title, system);
             }
 
             //
@@ -120,7 +120,7 @@ namespace RetroPlus.Models {
                 var setting_name = console_ids[i].ascii_down() + "-download-directory";
 
                 system = new System(handheld_ids[i], handheld_names[i], true, handheld_years[i], setting_name);
-                systems.set(handheld_names[i], system);
+                systems.set(system.title, system);
             }
 
             //

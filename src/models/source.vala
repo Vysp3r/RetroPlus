@@ -6,16 +6,16 @@ namespace RetroPlus.Models {
             this.title = title;
         }
 
-        public static List<Models.Source> get_sources() {
+        public static Gee.HashMap<string, Models.Source> get_sources() {
             //
-            var sources = new List<Models.Source> ();
+            var sources = new Gee.HashMap<string, Models.Source> ();
 
             //
             string[] source_names = { "Vimm's Lair" };
 
             for (var i = 0; i < source_names.length; i++) {
                 var source = new Source(source_names[i]);
-                sources.append(source);
+                sources.set(source.title, source);
             }
 
             //
