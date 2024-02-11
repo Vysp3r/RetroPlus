@@ -1,12 +1,11 @@
 data/com.vysp3r.RetroPlus.desktop.in
 data/com.vysp3r.RetroPlus.metainfo.xml.in
-src/window.vala
 src/application.vala
-src/preferences.vala
+src/main-window.vala
+src/preferences-dialog.vala
+src/status-window.vala
 src/widgets/download-popover.vala
 src/widgets/download-row.vala
-src/widgets/game-detail-modal.vala
-src/widgets/search-box.vala
+src/widgets/game-detail-dialog.vala
 src/widgets/search-filter-box.vala
 src/widgets/search-row.vala
-src/widgets/status-box.vala

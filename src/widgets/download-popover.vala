@@ -30,7 +30,7 @@ namespace RetroPlus.Widgets {
             this.set_child (box);
         }
 
-        public void add_download (Models.Game game, Models.Media media) {
+        public void add_download (Models.Game game, Models.Media media, Models.System system) {
             //
             var cancelled = false;
 
@@ -67,7 +67,7 @@ namespace RetroPlus.Widgets {
                 row.set_starting ();
 
                 //
-                game.download.begin (media, () => cancelled, row.set_progress, row.set_download_speed, (obj, res) => {
+                game.download.begin (media, Application.settings.get_string (system.download_directory_setting_name), () => cancelled, row.set_progress, row.set_download_speed, (obj, res) => {
                     //
                     var download_result = game.download.end (res);
 

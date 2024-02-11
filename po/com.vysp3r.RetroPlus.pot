@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.vysp3r.RetroPlus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-09 21:49-0500\n"
+"POT-Creation-Date: 2024-02-11 11:21-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,35 +51,124 @@ msgstr ""
 msgid "Initial release"
 msgstr ""
 
+#: src/application.vala:49
+msgid "An error occurred during the initialization."
+msgstr ""
+
+#: src/application.vala:49 src/main-window.vala:196
+msgid "Please report this on our GitHub."
+msgstr ""
+
 #.
-#: src/window.vala:23
-msgid "Loading"
+#: src/main-window.vala:34
+msgid "Preferences"
+msgstr ""
+
+#: src/main-window.vala:35
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: src/main-window.vala:36
+msgid "About"
+msgstr ""
+
+#: src/main-window.vala:52
+msgid "Search a game by name"
+msgstr ""
+
+#: src/main-window.vala:55
+msgid "Advanced filtering options"
+msgstr ""
+
+#.
+#: src/main-window.vala:65 src/widgets/game-detail-dialog.vala:70
+#: src/widgets/search-filter-box.vala:17
+msgid "System"
+msgstr ""
+
+#.
+#: src/main-window.vala:70
+msgid "Title"
+msgstr ""
+
+#.
+#: src/main-window.vala:75 src/widgets/game-detail-dialog.vala:73
+msgid "Region"
+msgstr ""
+
+#.
+#: src/main-window.vala:80 src/widgets/game-detail-dialog.vala:116
+msgid "Version"
+msgstr ""
+
+#.
+#: src/main-window.vala:116
+msgid "Feels empty in here."
+msgstr ""
+
+#: src/main-window.vala:116
+msgid "Why not search for a game?"
+msgstr ""
+
+#: src/main-window.vala:192
+msgid "Can't reach the servers."
+msgstr ""
+
+#: src/main-window.vala:192
+msgid "Please report this on our GitHub if you think this is a bug."
+msgstr ""
+
+#: src/main-window.vala:196
+msgid "An unknown error occurred."
+msgstr ""
+
+#: src/main-window.vala:200
+msgid "Nothing found, try searching again."
+msgstr ""
+
+#.
+#: src/main-window.vala:274
+msgid "An error occured while opening"
+msgstr ""
+
+#: src/main-window.vala:300
+msgid "download queued"
+msgstr ""
+
+#: src/main-window.vala:306
+msgid "finished downloading"
+msgstr ""
+
+#: src/main-window.vala:312
+msgid "download cancelled"
+msgstr ""
+
+#: src/main-window.vala:318
+msgid "could not download due to an error"
+msgstr ""
+
+#: src/main-window.vala:324
+msgid " is already downloaded"
 msgstr ""
 
 #.
 #.
-#: src/window.vala:105 src/window.vala:110
-msgid "An error occured during the initialization."
+#: src/preferences-dialog.vala:31
+msgid "Choose a system"
 msgstr ""
 
 #.
-#: src/window.vala:115
-msgid "An error occured while loading the systems."
-msgstr ""
-
-#.
-#.
-#: src/window.vala:121
-msgid "To fix this problem, you should report this issue on GitHub."
-msgstr ""
-
-#: src/preferences.vala:20
-msgid "Choose the download directory"
-msgstr ""
-
-#.
-#: src/preferences.vala:45
+#: src/preferences-dialog.vala:49
 msgid "Download directory"
+msgstr ""
+
+#.
+#: src/preferences-dialog.vala:55
+msgid "Download directory per system"
+msgstr ""
+
+#: src/preferences-dialog.vala:87
+msgid "Choose the download directory"
 msgstr ""
 
 #.
@@ -100,200 +189,101 @@ msgid "Cancelling"
 msgstr ""
 
 #.
-#.
-#: src/widgets/game-detail-modal.vala:23
+#: src/widgets/game-detail-dialog.vala:21
 msgid "Close"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:27
+#: src/widgets/game-detail-dialog.vala:25
 msgid "Download"
 msgstr ""
 
 #.
-#.
-#.
-#: src/widgets/game-detail-modal.vala:72 src/widgets/search-box.vala:65
-#: src/widgets/search-filter-box.vala:17
-msgid "System"
-msgstr ""
-
-#.
-#: src/widgets/game-detail-modal.vala:75 src/widgets/search-box.vala:75
-msgid "Region"
-msgstr ""
-
-#.
-#: src/widgets/game-detail-modal.vala:103
+#: src/widgets/game-detail-dialog.vala:101
 msgid "Players"
 msgstr ""
 
-#: src/widgets/game-detail-modal.vala:103
+#: src/widgets/game-detail-dialog.vala:101
 msgid "Simultaneous"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:106
+#: src/widgets/game-detail-dialog.vala:104
 msgid "Year"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:109
+#: src/widgets/game-detail-dialog.vala:107
 msgid "Publisher"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:112
+#: src/widgets/game-detail-dialog.vala:110
 msgid "Serial"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:115
-#: src/widgets/game-detail-modal.vala:220
+#: src/widgets/game-detail-dialog.vala:113
+#: src/widgets/game-detail-dialog.vala:217
 msgid "Size"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:118 src/widgets/search-box.vala:80
-msgid "Version"
-msgstr ""
-
-#.
-#: src/widgets/game-detail-modal.vala:147
+#: src/widgets/game-detail-dialog.vala:145
 msgid "Play online"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:151
+#: src/widgets/game-detail-dialog.vala:149
 msgid "See manual"
 msgstr ""
 
 #.
 #.
 #.
-#: src/widgets/game-detail-modal.vala:215
-#: src/widgets/game-detail-modal.vala:251
+#: src/widgets/game-detail-dialog.vala:212
+#: src/widgets/game-detail-dialog.vala:248
 msgid "CRC"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:216
-#: src/widgets/game-detail-modal.vala:255
+#: src/widgets/game-detail-dialog.vala:213
+#: src/widgets/game-detail-dialog.vala:252
 msgid "MD5"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:217
-#: src/widgets/game-detail-modal.vala:260
+#: src/widgets/game-detail-dialog.vala:214
+#: src/widgets/game-detail-dialog.vala:257
 msgid "SHA1"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:225
+#: src/widgets/game-detail-dialog.vala:222
 msgid "Graphics"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:228
+#: src/widgets/game-detail-dialog.vala:225
 msgid "Sound"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:231
+#: src/widgets/game-detail-dialog.vala:228
 msgid "Gameplay"
 msgstr ""
 
 #.
-#: src/widgets/game-detail-modal.vala:234
+#: src/widgets/game-detail-dialog.vala:231
 msgid "Overall"
 msgstr ""
 
-#: src/widgets/game-detail-modal.vala:234
+#: src/widgets/game-detail-dialog.vala:231
 msgid "votes"
 msgstr ""
 
-#: src/widgets/game-detail-modal.vala:234
+#: src/widgets/game-detail-dialog.vala:231
 msgid "vote"
-msgstr ""
-
-#.
-#: src/widgets/search-box.vala:36
-msgid "Preferences"
-msgstr ""
-
-#: src/widgets/search-box.vala:37
-msgid "Keyboard Shortcuts"
-msgstr ""
-
-#: src/widgets/search-box.vala:38
-msgid "About"
-msgstr ""
-
-#: src/widgets/search-box.vala:54
-msgid "Search a game by name"
-msgstr ""
-
-#: src/widgets/search-box.vala:57
-msgid "Advanced filtering options"
-msgstr ""
-
-#.
-#: src/widgets/search-box.vala:70
-msgid "Title"
-msgstr ""
-
-#.
-#: src/widgets/search-box.vala:95
-msgid "Feels empty in here."
-msgstr ""
-
-#: src/widgets/search-box.vala:95
-msgid "Why not search for a game?"
-msgstr ""
-
-#: src/widgets/search-box.vala:184
-msgid "Can't reach the servers."
-msgstr ""
-
-#: src/widgets/search-box.vala:184
-msgid "Please report this on our GitHub if you think this is a bug."
-msgstr ""
-
-#: src/widgets/search-box.vala:188
-msgid "An unknown error occurred."
-msgstr ""
-
-#: src/widgets/search-box.vala:188
-msgid "Please report this on our GitHub."
-msgstr ""
-
-#: src/widgets/search-box.vala:192
-msgid "Nothing found, try searching again."
-msgstr ""
-
-#.
-#: src/widgets/search-box.vala:265
-msgid "An error occured while opening"
-msgstr ""
-
-#: src/widgets/search-box.vala:275
-msgid "download queued"
-msgstr ""
-
-#: src/widgets/search-box.vala:281
-msgid "finished downloading"
-msgstr ""
-
-#: src/widgets/search-box.vala:287
-msgid "download cancelled"
-msgstr ""
-
-#: src/widgets/search-box.vala:293
-msgid "could not download due to an error"
-msgstr ""
-
-#: src/widgets/search-box.vala:299
-msgid " is already downloaded"
 msgstr ""
 
 #.

@@ -12,12 +12,11 @@ constants = configure_file(
 sources = [
   'application.vala',
   
-  'window.vala',
-  'preferences.vala',
+  'main-window.vala',
+  'preferences-dialog.vala',
+  'status-window.vala',
 
-  'widgets/search-box.vala',
-  'widgets/status-box.vala',
-  'widgets/game-detail-modal.vala',
+  'widgets/game-detail-dialog.vala',
   'widgets/download-popover.vala',
   'widgets/search-row.vala',
   'widgets/download-row.vala',

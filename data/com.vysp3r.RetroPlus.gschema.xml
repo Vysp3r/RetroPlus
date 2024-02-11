@@ -1,9 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
 	<schema id="com.vysp3r.RetroPlus" path="/com/vysp3r/RetroPlus/">
-		<key name="download-directory" type="s">
+		<key name="atari2600-download-directory" type="s">
 			<default>""</default>
-			<summary>The directory where downloads will be stored</summary>
+			<summary>The directory where Atari 2600 downloads will be stored</summary>
+		</key>
+		<key name="atari5200-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where Atari 5200 downloads will be stored</summary>
+		</key>
+		<key name="nes-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where NES downloads will be stored</summary>
+		</key>
+		<key name="sms-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where SMS downloads will be stored</summary>
+		</key>
+		<key name="atari7800-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where Atari 7800 downloads will be stored</summary>
+		</key>
+		<key name="genesis-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where Genesis downloads will be stored</summary>
+		</key>
+		<key name="snes-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where SNES downloads will be stored</summary>
+		</key>
+		<key name="sega-32x-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where 32X downloads will be stored</summary>
+		</key>
+		<key name="saturn-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where Saturn downloads will be stored</summary>
+		</key>
+		<key name="ps1-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where PS1 downloads will be stored</summary>
+		</key>
+		<key name="n64-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where N64 downloads will be stored</summary>
+		</key>
+		<key name="dreamcast-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where Dreamcast downloads will be stored</summary>
+		</key>
+		<key name="ps2-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where PS2 downloads will be stored</summary>
+		</key>
+		<key name="gamecube-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where GameCube downloads will be stored</summary>
+		</key>
+		<key name="xbox-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where Xbox downloads will be stored</summary>
+		</key>
+		<key name="xbox360-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where Xbox 360 downloads will be stored</summary>
+		</key>
+		<key name="ps3-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where PS3 downloads will be stored</summary>
+		</key>
+		<key name="wii-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where Wii downloads will be stored</summary>
+		</key>
+		<key name="wiiware-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where WiiWare downloads will be stored</summary>
+		</key>
+		<key name="gb-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where GB downloads will be stored</summary>
+		</key>
+		<key name="lynx-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where Lynx downloads will be stored</summary>
+		</key>
+		<key name="gg-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where GG downloads will be stored</summary>
+		</key>
+		<key name="vb-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where VB downloads will be stored</summary>
+		</key>
+		<key name="gbc-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where GBC downloads will be stored</summary>
+		</key>
+		<key name="gba-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where GBA downloads will be stored</summary>
+		</key>
+		<key name="ds-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where DS downloads will be stored</summary>
+		</key>
+		<key name="psp-download-directory" type="s">
+			<default>""</default>
+			<summary>The directory where PSP downloads will be stored</summary>
 		</key>
 	</schema>
 </schemalist>
