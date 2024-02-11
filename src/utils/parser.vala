@@ -23,7 +23,7 @@ namespace RetroPlus.Utils {
 
             var temp_list = res.substring (start + start_text.length, res.length - start - start_text.length - (res.length - end));
 
-            var offset = res.contains (">System</td>") ? 1 : 0;
+            var offset = res.contains (">System</th>") ? 1 : 0;
 
             while (temp_list.length != 0) {
                 temp_list = temp_list.strip ();
