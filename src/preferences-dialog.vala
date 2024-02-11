@@ -1,20 +1,92 @@
 namespace RetroPlus {
     public class PreferencesDialog : Adw.PreferencesWindow {
+        ListStore sources_model { get; set; }
+        Adw.ComboRow sources_row { get; set; }
         ListStore systems_model { get; set; }
         Adw.ComboRow systems_row { get; set; }
         Adw.EntryRow directory_row { get; set; }
 
         construct {
             //
-            this.set_size_request (250, 350);
-            this.set_default_size (250, 350);
+            this.set_size_request (250, 400);
+            this.set_default_size (250, 400);
 
             //
             var page = new Adw.PreferencesPage ();
+            page.add (get_default_source_group ());
             page.add (get_system_directories_group ());
 
             //
             this.add (page);
+        }
+
+        public void initialize (Gee.Iterator<Models.Source> sources, Gee.Iterator<Models.System> systems) {
+            //
+            sources_model.remove_all ();
+
+            sources.foreach ((source) => {
+                sources_model.append (source);
+
+                return true;
+            });
+
+            //
+            systems_model.remove_all ();
+
+            systems.foreach ((system) => {
+                if (system.title != "All")systems_model.append (system);
+
+                return true;
+            });
+
+            on_systems_row_selected_item ();
+        }
+
+        Adw.PreferencesGroup get_default_source_group () {
+            //
+            var sources_factory = new Gtk.SignalListItemFactory ();
+            sources_factory.bind.connect (sources_factory_bind);
+            sources_factory.setup.connect (sources_factory_setup);
+
+            //
+            sources_model = new ListStore (typeof (Models.Source));
+
+            //
+            sources_row = new Adw.ComboRow ();
+            sources_row.set_title (_("Choose a source"));
+            sources_row.set_factory (sources_factory);
+            sources_row.set_model (sources_model);
+
+            //
+            Application.settings.bind ("default-source", sources_row, "text", GLib.SettingsBindFlags.DEFAULT);
+
+            //
+            var default_source_group = new Adw.PreferencesGroup ();
+            default_source_group.set_title (_("Default source"));
+            default_source_group.add (sources_row);
+
+            //
+            return default_source_group;
+        }
+
+        void sources_factory_bind (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = item as Gtk.ListItem;
+
+            var source = list_item.get_item () as Models.Source;
+
+            var title = list_item.get_data<Gtk.Label> ("title");
+            title.label = source.title;
+        }
+
+        void sources_factory_setup (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = item as Gtk.ListItem;
+
+            var title = new Gtk.Label ("");
+            title.set_hexpand (true);
+            title.set_halign (Gtk.Align.START);
+
+            list_item.set_data ("title", title);
+            list_item.set_child (title);
         }
 
         Adw.PreferencesGroup get_system_directories_group () {
@@ -58,21 +130,6 @@ namespace RetroPlus {
 
             //
             return system_directories_group;
-        }
-
-        public void initialize (Gee.Iterator<Models.System> systems) {
-            //
-            systems_model.remove_all ();
-
-            //
-            systems.foreach ((system) => {
-                if (system.title != "All")systems_model.append (system);
-
-                return true;
-            });
-
-            //
-            on_systems_row_selected_item ();
         }
 
         void on_systems_row_selected_item () {

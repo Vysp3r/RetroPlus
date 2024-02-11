@@ -93,7 +93,17 @@ namespace RetroPlus.Widgets {
             list_item.set_child (title);
         }
 
-        public void initialize (Gee.Iterator<Models.System> systems, List<Models.Source> sources) {
+        public void initialize (Gee.Iterator<Models.Source> sources, Gee.Iterator<Models.System> systems) {
+            //
+            source_list_store.remove_all ();
+
+            //
+            sources.foreach ((source) => {
+                source_list_store.append (source);
+
+                return true;
+            });
+
             //
             system_list_store.remove_all ();
 
@@ -103,14 +113,6 @@ namespace RetroPlus.Widgets {
 
                 return true;
             });
-
-            //
-            source_list_store.remove_all ();
-
-            //
-            foreach (var source in sources) {
-                source_list_store.append (source);
-            }
         }
     }
 }

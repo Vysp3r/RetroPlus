@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.vysp3r.RetroPlus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-11 11:21-0500\n"
+"POT-Creation-Date: 2024-02-11 12:35-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,11 +51,11 @@ msgstr ""
 msgid "Initial release"
 msgstr ""
 
-#: src/application.vala:49
+#: src/application.vala:55
 msgid "An error occurred during the initialization."
 msgstr ""
 
-#: src/application.vala:49 src/main-window.vala:196
+#: src/application.vala:55 src/main-window.vala:196
 msgid "Please report this on our GitHub."
 msgstr ""
 
@@ -153,21 +153,33 @@ msgstr ""
 
 #.
 #.
-#: src/preferences-dialog.vala:31
+#: src/preferences-dialog.vala:56
+msgid "Choose a source"
+msgstr ""
+
+#.
+#.
+#: src/preferences-dialog.vala:65
+msgid "Default source"
+msgstr ""
+
+#.
+#.
+#: src/preferences-dialog.vala:103
 msgid "Choose a system"
 msgstr ""
 
 #.
-#: src/preferences-dialog.vala:49
+#: src/preferences-dialog.vala:121
 msgid "Download directory"
 msgstr ""
 
 #.
-#: src/preferences-dialog.vala:55
+#: src/preferences-dialog.vala:127
 msgid "Download directory per system"
 msgstr ""
 
-#: src/preferences-dialog.vala:87
+#: src/preferences-dialog.vala:144
 msgid "Choose the download directory"
 msgstr ""
 

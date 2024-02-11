@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
 	<schema id="com.vysp3r.RetroPlus" path="/com/vysp3r/RetroPlus/">
+		<key name="default-source" type="s">
+			<default>""</default>
+			<summary>The default source selected when the application start</summary>
+		</key>
 		<key name="atari2600-download-directory" type="s">
 			<default>""</default>
 			<summary>The directory where Atari 2600 downloads will be stored</summary>
