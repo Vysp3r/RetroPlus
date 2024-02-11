@@ -33,7 +33,8 @@ namespace RetroPlus {
             var menu_model = new GLib.Menu ();
             menu_model.append (_("Preferences"), "app.show-preferences");
             menu_model.append (_("Keyboard Shortcuts"), "win.show-help-overlay");
-            menu_model.append (_("About"), "app.show-about");
+            //Translators: Do not translate the application name
+            menu_model.append (_("About RetroPlus"), "app.show-about");
 
             //
             var menu_button = new Gtk.MenuButton ();
