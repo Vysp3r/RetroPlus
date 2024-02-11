@@ -288,12 +288,12 @@ namespace RetroPlus {
         }
 
         void on_download_started (Models.Game game, Models.Media media) {
-            var system = null; // systems.get (game.system);
+            var system = Application.systems.get (game.system);
 
-            // if (system == null) {
-            // on_download_error (game);
-            // return;
-            // } TODO
+            if (system == null) {
+                on_download_error (game);
+                return;
+            }
 
             download_popover.add_download (game, media, system);
 

@@ -1,9 +1,8 @@
 namespace RetroPlus {
     public class Application : Adw.Application {
         public static Settings settings;
-
-        Gee.HashMap<string, Models.Source> sources;
-        Gee.HashMap<string, Models.System> systems;
+        public static Gee.HashMap<string, Models.Source> sources;
+        public static Gee.HashMap<string, Models.System> systems;
 
         Gee.Iterator<Models.Source> get_sources_ordered_by_name () {
             return sources.values.order_by ((a, b) => {
