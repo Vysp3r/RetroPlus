@@ -226,26 +226,26 @@ namespace RetroPlus.Utils {
                 var id_parsed = int.try_parse (raw_id, out id);
                 if (!id_parsed) {
                     warning (@"Unable to parse the id ($raw_id)");
-                    continue;
+                    return false;
                 }
 
                 string title;
                 var title_parsed = parse_markup(raw_title, out title);
                 if (!title_parsed) {
                     warning (@"Unable to parse the title ($raw_title)");
-                    continue;
+                    return false;
                 }
 
                 int manual_id;
                 var manual_parsed = int.try_parse (raw_manual_id, out manual_id);
                 if (!manual_parsed) {
                     warning (@"Unable to parse the manual id ($raw_manual_id)");
-                    continue;
+                    return false;
                 }
 
                 if (media == null) {
                     warning (@"Unable to parse the media");
-                    continue;
+                    return false;
                 }
 
                 var game = new Models.Game.from_search (id, system, title, manual_id, extras, regions, media);
