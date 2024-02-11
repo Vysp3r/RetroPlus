@@ -67,27 +67,29 @@ namespace RetroPlus {
 
             var first_source = ordered_sources.get ();
 
-            //
-            var default_source = Application.settings.get_string ("default-source");
+            var default_source = settings.get_string ("default-source");
+
             if (default_source == "") {
-                Application.settings.set_string ("default-source", first_source.title);
-            } else if (!sources.has_key (Application.settings.get_string ("default-source"))) {
+                settings.set_string ("default-source", first_source.title);
+            } else if (!sources.has_key (settings.get_string ("default-source"))) {
                 default_source = first_source.title;
                 message (@"The default-source setting was invalid therefore it was reset to '$default_source'");
-                Application.settings.set_string ("default-source", default_source);
+                settings.set_string ("default-source", default_source);
             }
 
             //
             systems = Models.System.get_systems ();
 
             //
-            foreach (var key in Application.settings.settings_schema.list_keys ()) {
-                var download_directory = Application.settings.get_string (key);
+            foreach (var key in settings.settings_schema.list_keys ()) {
+                if (!key.contains ("-download-directory"))continue;
+
+                var download_directory = settings.get_string (key);
                 var user_download_directory = GLib.Environment.get_user_special_dir (GLib.UserDirectory.DOWNLOAD);
-                if (download_directory == "")Application.settings.set_string (key, user_download_directory);
+                if (download_directory == "")settings.set_string (key, user_download_directory);
                 else if (!FileUtils.test (download_directory, GLib.FileTest.IS_DIR)) {
                     message (@"The $key setting was invalid therefore it was reset to '$user_download_directory'");
-                    Application.settings.set_string (key, user_download_directory);
+                    settings.set_string (key, user_download_directory);
                 }
             }
 
