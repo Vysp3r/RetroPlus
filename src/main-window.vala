@@ -1,29 +1,27 @@
-namespace RetroPlus.Widgets {
-    public class SearchBox : Gtk.Box {
+namespace RetroPlus {
+    public class MainWindow : Adw.ApplicationWindow {
         Gtk.Entry search_entry { get; set; }
-        public SearchFilterBox search_filter_box { get; construct; }
+        Widgets.SearchFilterBox search_filter_box { get; set; }
         Gtk.ListBox games_list { get; set; }
         Gtk.Spinner spinner { get; set; }
-        DownloadPopover download_popover { get; set; }
+        Widgets.DownloadPopover download_popover { get; set; }
         Adw.ToastOverlay toast_overlay { get; set; }
         Models.System.get_games_by_title_result search_results;
         Gtk.Label system_label { get; set; }
         Adw.StatusPage status_page { get; set; }
 
-        public SearchBox (SearchFilterBox search_filter_box) {
-            Object (search_filter_box: search_filter_box);
-        }
-
         construct {
             //
-            this.set_orientation (Gtk.Orientation.VERTICAL);
+            this.set_title (Constants.APP_NAME);
+            this.set_size_request (410, 500);
+            this.set_default_size (410, 500);
 
             //
             var download_button = new Gtk.Button.from_icon_name ("download-symbolic");
             download_button.clicked.connect (on_download_button_clicked);
 
             //
-            download_popover = new DownloadPopover ();
+            download_popover = new Widgets.DownloadPopover ();
             download_popover.set_parent (download_button);
             download_popover.set_autohide (true);
             download_popover.download_finished.connect (on_download_finished);
@@ -59,7 +57,9 @@ namespace RetroPlus.Widgets {
             search_entry.activate.connect (on_search_entry_activated);
 
             //
+            search_filter_box = new Widgets.SearchFilterBox ();
             search_filter_box.set_visible (false);
+            search_filter_box.source_dropdown.notify["selected-item"].connect (on_source_dropdown_selected_item_changed);
 
             //
             system_label = new Gtk.Label (_("System"));
@@ -91,12 +91,6 @@ namespace RetroPlus.Widgets {
             legend_box.append (version_label);
 
             //
-            status_page = new Adw.StatusPage ();
-            status_page.set_description (_("Feels empty in here.") + "\n" + _("Why not search for a game?"));
-            status_page.set_icon_name ("search-symbolic");
-            status_page.set_valign (Gtk.Align.CENTER);
-
-            //
             games_list = new Gtk.ListBox ();
             games_list.set_activate_on_single_click (false);
             games_list.set_selection_mode (Gtk.SelectionMode.SINGLE);
@@ -116,6 +110,12 @@ namespace RetroPlus.Widgets {
             spinner.set_size_request (50, 50);
             spinner.set_halign (Gtk.Align.CENTER);
             spinner.set_valign (Gtk.Align.CENTER);
+
+            //
+            status_page = new Adw.StatusPage ();
+            status_page.set_description (_("Feels empty in here.") + "\n" + _("Why not search for a game?"));
+            status_page.set_icon_name ("search-symbolic");
+            status_page.set_valign (Gtk.Align.CENTER);
 
             //
             var overlay = new Gtk.Overlay ();
@@ -143,8 +143,16 @@ namespace RetroPlus.Widgets {
             toast_overlay.set_child (clamp);
 
             //
-            this.append (header);
-            this.append (toast_overlay);
+            var toolbar_view = new Adw.ToolbarView ();
+            toolbar_view.add_top_bar (header);
+            toolbar_view.set_content (toast_overlay);
+
+            //
+            this.set_content (toolbar_view);
+        }
+
+        public void initialize (Gee.Iterator<Models.System> systems, List<Models.Source> sources) {
+            search_filter_box.initialize (systems, sources);
         }
 
         void on_download_button_clicked () {
@@ -194,7 +202,7 @@ namespace RetroPlus.Widgets {
                 } else {
                     foreach (var game in search_results.games) {
                         //
-                        var row = new SearchRow (game, system.id == "");
+                        var row = new Widgets.SearchRow (game, system.id == "");
 
                         //
                         games_list.append (row);
@@ -252,9 +260,10 @@ namespace RetroPlus.Widgets {
                 //
                 if (!error) {
                     if (game.medias.length () > 0) {
-                        var game_detail_modal = new GameDetailModal (game);
+                        var game_detail_modal = new Widgets.GameDetailDialog (game); // TODO Add init instead of passing
+                        game_detail_modal.set_transient_for (this);
                         game_detail_modal.download_clicked.connect (on_download_started);
-                        game_detail_modal.show ();
+                        game_detail_modal.present ();
                     } else {
                         error = true;
                     }
@@ -269,8 +278,24 @@ namespace RetroPlus.Widgets {
             });
         }
 
+        void on_source_dropdown_selected_item_changed () {
+            var source = (Models.Source) search_filter_box.source_dropdown.get_selected_item ();
+
+            switch (source.title) {
+            case "Vimm's Lair" :
+                break;
+            }
+        }
+
         void on_download_started (Models.Game game, Models.Media media) {
-            download_popover.add_download (game, media);
+            var system = null; // systems.get (game.system);
+
+            // if (system == null) {
+            // on_download_error (game);
+            // return;
+            // } TODO
+
+            download_popover.add_download (game, media, system);
 
             var toast = new Adw.Toast (game.title + " " + _("download queued"));
 

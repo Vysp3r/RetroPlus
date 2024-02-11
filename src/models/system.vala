@@ -4,6 +4,7 @@ namespace RetroPlus.Models {
         public string title { get; private set; }
         public bool handheld { get; private set; }
         public uint year { get; private set; }
+        public string download_directory_setting_name { get; private set; }
         public bool extra_info_loaded { get; set; }
         public uint media_count { get; set; }
         public uint media_total { get; set; }
@@ -22,11 +23,12 @@ namespace RetroPlus.Models {
             return (media_count / (float) media_total) * 100;
         }
 
-        public System(string id, string title, bool handheld, uint year) {
+        public System(string id, string title, bool handheld, uint year, string download_directory_setting_name) {
             this.id = id;
             this.title = title;
             this.handheld = handheld;
             this.year = year;
+            this.download_directory_setting_name = download_directory_setting_name;
         }
 
         public bool load_extra_info(bool force_load = false) {
@@ -88,9 +90,12 @@ namespace RetroPlus.Models {
             return result;
         }
 
-        public static bool get_systems(ref Gee.HashMap<string, Models.System> systems) {
+        public static Gee.HashMap<string, Models.System> get_systems() {
             //
-            var system = new System("", "All", false, 0);
+            var systems = new Gee.HashMap<string, Models.System> ();
+
+            //
+            var system = new System("", "All", false, 0, "");
             systems.set(system.id, system);
 
             //
@@ -99,8 +104,11 @@ namespace RetroPlus.Models {
             string[] console_names = { "Atari 2600", "Atari 5200", "Nintendo", "Master System", "Atari 7800", "Genesis", "Super Nintendo", "Sega 32X", "Saturn", "PlayStation", "Nintendo 64", "Dreamcast", "PlayStation 2", "GameCube", "Xbox", "Xbox 360", "PlayStation 3", "Wii", "WiiWare" };
 
             for (var i = 0; i < console_names.length; i++) {
-                system = new System(console_ids[i], console_names[i], false, console_years[i]);
-                systems.set(console_ids[i], system);
+                var setting_name = console_ids[i].ascii_down() + "-download-directory";
+                if (console_ids[i] == "32X")setting_name = "sega-".concat(setting_name); // Custom rule since a setting cannot start with a number
+
+                system = new System(console_ids[i], console_names[i], false, console_years[i], setting_name);
+                systems.set(console_names[i], system);
             }
 
             //
@@ -109,12 +117,14 @@ namespace RetroPlus.Models {
             string[] handheld_names = { "Game Boy", "Lynx", "Game Gear", "Virtual Boy", "Game Boy Color", "Game Boy Advance", "Nintendo DS", "PlayStation Portable" };
 
             for (var i = 0; i < handheld_names.length; i++) {
-                system = new System(handheld_ids[i], handheld_names[i], true, handheld_years[i]);
-                systems.set(handheld_ids[i], system);
+                var setting_name = console_ids[i].ascii_down() + "-download-directory";
+
+                system = new System(handheld_ids[i], handheld_names[i], true, handheld_years[i], setting_name);
+                systems.set(handheld_names[i], system);
             }
 
             //
-            return true;
+            return (owned) systems;
         }
     }
 }

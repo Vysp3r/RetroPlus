@@ -140,7 +140,7 @@ namespace RetroPlus.Models {
             ERROR
         }
 
-        public async DownloadResults download (Models.Media media, download_cancel_callback download_cancel_callback, download_progress_callback download_progress_callback, download_speed_callback download_speed_callback) {
+        public async DownloadResults download (Models.Media media, string download_directory, download_cancel_callback download_cancel_callback, download_progress_callback download_progress_callback, download_speed_callback download_speed_callback) {
             try {
                 var session = new Soup.Session ();
                 session.set_user_agent (Utils.Web.get_user_agent ());
@@ -167,7 +167,7 @@ namespace RetroPlus.Models {
 
                 if (!params.contains ("filename"))return DownloadResults.ERROR;
 
-                var path = Application.settings.get_string ("download-directory") + "/" + params.get ("filename");
+                var path = download_directory + "/" + params.get ("filename");
 
                 var file = GLib.File.new_for_path (path);
 
@@ -224,7 +224,7 @@ namespace RetroPlus.Models {
             GLib.Timeout.add (interval, () => {
                 nap.callback ();
                 return false;
-              }, priority);
+            }, priority);
             yield;
         }
     }

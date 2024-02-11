@@ -1,6 +1,7 @@
 namespace RetroPlus.Widgets {
-    public class GameDetailModal : Adw.MessageDialog {
+    public class GameDetailDialog : Adw.MessageDialog {
         public Models.Game game { get; construct; }
+        public Adw.ApplicationWindow window { get; construct; }
         GLib.ListStore media_list_store { get; set; }
         Gtk.DropDown media_dropdown { get; set; }
         Gtk.Label crc_label { get; set; }
@@ -11,21 +12,18 @@ namespace RetroPlus.Widgets {
         public signal void download_clicked (Models.Game game, Models.Media media);
         public signal void close_clicked ();
 
-        public GameDetailModal (Models.Game game) {
+        public GameDetailDialog (Models.Game game) {
             Object (game: game);
         }
 
         construct {
             //
-            this.set_transient_for (Application.main_window);
+            this.add_response ("close", _("Close"));
+            this.set_response_appearance ("close", Adw.ResponseAppearance.DEFAULT);
 
             //
-            add_response ("close", _("Close"));
-            set_response_appearance ("close", Adw.ResponseAppearance.DEFAULT);
-
-            //
-            add_response ("download", _("Download"));
-            set_response_appearance ("download", Adw.ResponseAppearance.SUGGESTED);
+            this.add_response ("download", _("Download"));
+            this.set_response_appearance ("download", Adw.ResponseAppearance.SUGGESTED);
 
             //
             this.set_close_response ("close");
@@ -177,28 +175,27 @@ namespace RetroPlus.Widgets {
 
         void on_play_online_button_clicked () {
             var uri_launcher = new Gtk.UriLauncher (game.get_play_online_url ());
-            uri_launcher.launch.begin (Application.main_window, null);
+            uri_launcher.launch.begin (window, null);
         }
 
         void on_manual_button_clicked () {
             var uri_launcher = new Gtk.UriLauncher (game.get_manual_url ());
-            uri_launcher.launch.begin (Application.main_window, null);
+            uri_launcher.launch.begin (window, null);
         }
 
         void media_factory_bind (Gtk.SignalListItemFactory factory, Object item) {
             Gtk.ListItem list_item = item as Gtk.ListItem;
 
-            var string_holder = list_item.get_item () as Models.Media;
+            var media = list_item.get_item () as Models.Media;
 
             var title = list_item.get_data<Gtk.Label> ("title");
-            title.label = "%.2f".printf (string_holder.version);
+            title.label = "%.2f".printf (media.version);
         }
 
         void media_factory_setup (Gtk.SignalListItemFactory factory, Object item) {
             Gtk.ListItem list_item = item as Gtk.ListItem;
 
             var title = new Gtk.Label ("");
-            title.xalign = 0.0f;
 
             list_item.set_data ("title", title);
             list_item.set_child (title);

@@ -49,6 +49,7 @@ namespace RetroPlus.Widgets {
             var flow_box = new Gtk.FlowBox ();
             flow_box.append (system_box);
             flow_box.append (source_box);
+            flow_box.set_selection_mode (Gtk.SelectionMode.NONE);
 
             //
             this.append (flow_box);
@@ -67,6 +68,7 @@ namespace RetroPlus.Widgets {
             var list_item = object as Gtk.ListItem;
 
             var title = new Gtk.Label ("");
+            title.set_halign (Gtk.Align.START);
 
             list_item.set_data ("title", title);
             list_item.set_child (title);
@@ -85,24 +87,30 @@ namespace RetroPlus.Widgets {
             var list_item = object as Gtk.ListItem;
 
             var title = new Gtk.Label ("");
+            title.set_halign (Gtk.Align.START);
 
             list_item.set_data ("title", title);
             list_item.set_child (title);
         }
 
-        public void initialize (Gee.Iterator<Models.System> system) {
+        public void initialize (Gee.Iterator<Models.System> systems, List<Models.Source> sources) {
             //
             system_list_store.remove_all ();
 
             //
-            system.foreach ((system) => {
+            systems.foreach ((system) => {
                 system_list_store.append (system);
 
                 return true;
             });
 
             //
-            source_list_store.append (new Models.Source("Vimm's Lair"));
+            source_list_store.remove_all ();
+
+            //
+            foreach (var source in sources) {
+                source_list_store.append (source);
+            }
         }
     }
 }
