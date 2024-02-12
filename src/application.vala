@@ -51,7 +51,8 @@ namespace RetroPlus {
                 //
                 var status_window = new StatusWindow ();
                 status_window.set_application (this);
-                status_window.initialize ("bug-symbolic", "", _("An error occurred during the initialization.") + "\n" + _("Please report this on our GitHub."));
+                status_window.initialize ("bug-symbolic", "", _("An error occurred during the initialization.\n" +
+                                                                "Please report this on our GitHub."));
                 status_window.present ();
 
                 //
@@ -109,6 +110,7 @@ namespace RetroPlus {
             // Register the action to display the preferences dialog
             var preferences_action = new SimpleAction ("show-preferences", null);
             preferences_action.activate.connect (this.show_preferences_dialog);
+            this.set_accels_for_action ("app.show-preferences", { "<Ctrl>comma" });
             this.add_action (preferences_action);
 
             // Register the action to close the app on Ctrl + Q

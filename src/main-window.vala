@@ -114,7 +114,8 @@ namespace RetroPlus {
 
             //
             status_page = new Adw.StatusPage ();
-            status_page.set_description (_("Feels empty in here.") + "\n" + _("Why not search for a game?"));
+            status_page.set_description (_("Feels empty in here.\n" +
+                                           "Why not search for a game?"));
             status_page.set_icon_name ("search-symbolic");
             status_page.set_valign (Gtk.Align.CENTER);
 
@@ -190,11 +191,13 @@ namespace RetroPlus {
                 //
                 if (search_results.request_error) {
                     status_page.set_icon_name ("wifi-off-symbolic");
-                    status_page.set_description (_("Can't reach the servers.") + "\n" + _("Please report this on our GitHub if you think this is a bug."));
+                    status_page.set_description (_("Can't reach the servers.\n" +
+                                                   "Please report this on our GitHub if you think this is a bug."));
                     status_page.set_visible (true);
                 } else if (search_results.parsing_error) {
                     status_page.set_icon_name ("bug-symbolic");
-                    status_page.set_description (_("An unknown error occurred.") + "\n" + _("Please report this on our GitHub."));
+                    status_page.set_description (_("An unknown error occurred.\n" +
+                                                   "Please report this on our GitHub."));
                     status_page.set_visible (true);
                 } else if (search_results.games == null) {
                     status_page.set_icon_name ("emoji-frown-symbolic");
@@ -272,7 +275,7 @@ namespace RetroPlus {
 
                 //
                 if (error) {
-                    var toast = new Adw.Toast (_("An error occured while opening") + " " + game.title);
+                    var toast = new Adw.Toast (_("An error occured while opening %s").printf(game.title));
 
                     toast_overlay.add_toast (toast);
                 }
@@ -298,31 +301,31 @@ namespace RetroPlus {
 
             download_popover.add_download (game, media, system);
 
-            var toast = new Adw.Toast (game.title + " " + _("download queued"));
+            var toast = new Adw.Toast (_("%s download queued").printf(game.title));
 
             toast_overlay.add_toast (toast);
         }
 
         void on_download_finished (Models.Game game) {
-            var toast = new Adw.Toast (game.title + " " + _("finished downloading"));
+            var toast = new Adw.Toast (_("%s finished downloading").printf(game.title));
 
             toast_overlay.add_toast (toast);
         }
 
         void on_download_cancelled (Models.Game game) {
-            var toast = new Adw.Toast (game.title + " " + _("download cancelled"));
+            var toast = new Adw.Toast (_("%s download cancelled").printf(game.title));
 
             toast_overlay.add_toast (toast);
         }
 
         void on_download_error (Models.Game game) {
-            var toast = new Adw.Toast (game.title + " " + _("could not download due to an error"));
+            var toast = new Adw.Toast (_("%s could not download due to an error").printf(game.title));
 
             toast_overlay.add_toast (toast);
         }
 
         void on_download_file_exists (Models.Game game) {
-            var toast = new Adw.Toast (game.title + " " + _(" is already downloaded"));
+            var toast = new Adw.Toast (_("%s is already downloaded").printf(game.title));
 
             toast_overlay.add_toast (toast);
         }
