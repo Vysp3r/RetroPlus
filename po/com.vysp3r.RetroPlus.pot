@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.vysp3r.RetroPlus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-11 12:35-0500\n"
+"POT-Creation-Date: 2024-02-12 03:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,13 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/com.vysp3r.RetroPlus.desktop.in:3
-#: data/com.vysp3r.RetroPlus.metainfo.xml.in:5
+#. Translator: Translate as `RetroPlus`
+#: data/com.vysp3r.RetroPlus.desktop.in:4
 msgid "RetroPlus"
 msgstr ""
 
+#: data/com.vysp3r.RetroPlus.desktop.in:5
 #: data/com.vysp3r.RetroPlus.metainfo.xml.in:6
 msgid "A simple ROM downloader"
+msgstr ""
+
+#: data/com.vysp3r.RetroPlus.desktop.in:11
+msgid "game;rom;emulator;download;"
 msgstr ""
 
 #: data/com.vysp3r.RetroPlus.metainfo.xml.in:8
@@ -34,42 +39,27 @@ msgstr ""
 msgid "Vimm's Lair"
 msgstr ""
 
-#: data/com.vysp3r.RetroPlus.metainfo.xml.in:20
-msgid "Vysp3r"
-msgstr ""
-
-#: data/com.vysp3r.RetroPlus.metainfo.xml.in:27
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:30
 msgid "Main window"
 msgstr ""
 
-#: data/com.vysp3r.RetroPlus.metainfo.xml.in:35
-#: data/com.vysp3r.RetroPlus.metainfo.xml.in:42
-msgid "Fix AppData"
+#: src/application.vala:54
+msgid ""
+"An error occurred during the initialization.\n"
+"Please report this on our GitHub."
 msgstr ""
 
-#: data/com.vysp3r.RetroPlus.metainfo.xml.in:49
-msgid "Initial release"
-msgstr ""
-
-#: src/application.vala:55
-msgid "An error occurred during the initialization."
-msgstr ""
-
-#: src/application.vala:55 src/main-window.vala:196
-msgid "Please report this on our GitHub."
-msgstr ""
-
-#.
-#: src/main-window.vala:34
+#: src/main-window.vala:33
 msgid "Preferences"
 msgstr ""
 
-#: src/main-window.vala:35
+#: src/main-window.vala:34
 msgid "Keyboard Shortcuts"
 msgstr ""
 
+#. Translators: Do not translate the application name
 #: src/main-window.vala:36
-msgid "About"
+msgid "About RetroPlus"
 msgstr ""
 
 #: src/main-window.vala:52
@@ -80,111 +70,100 @@ msgstr ""
 msgid "Advanced filtering options"
 msgstr ""
 
-#.
-#: src/main-window.vala:65 src/widgets/game-detail-dialog.vala:70
-#: src/widgets/search-filter-box.vala:17
+#: src/main-window.vala:64 src/widgets/game-detail-dialog.vala:67
+#: src/widgets/search-filter-box.vala:16
 msgid "System"
 msgstr ""
 
-#.
-#: src/main-window.vala:70
+#: src/main-window.vala:68
 msgid "Title"
 msgstr ""
 
-#.
-#: src/main-window.vala:75 src/widgets/game-detail-dialog.vala:73
+#: src/main-window.vala:72 src/widgets/game-detail-dialog.vala:69
 msgid "Region"
 msgstr ""
 
-#.
-#: src/main-window.vala:80 src/widgets/game-detail-dialog.vala:116
+#: src/main-window.vala:76 src/widgets/game-detail-dialog.vala:106
 msgid "Version"
 msgstr ""
 
-#.
-#: src/main-window.vala:116
-msgid "Feels empty in here."
+#: src/main-window.vala:111
+msgid ""
+"Feels empty in here.\n"
+"Why not search for a game?"
 msgstr ""
 
-#: src/main-window.vala:116
-msgid "Why not search for a game?"
+#: src/main-window.vala:187
+msgid ""
+"Can't reach the servers.\n"
+"Please report this on our GitHub if you think this is a bug."
 msgstr ""
 
 #: src/main-window.vala:192
-msgid "Can't reach the servers."
+msgid ""
+"An unknown error occurred.\n"
+"Please report this on our GitHub."
 msgstr ""
 
-#: src/main-window.vala:192
-msgid "Please report this on our GitHub if you think this is a bug."
-msgstr ""
-
-#: src/main-window.vala:196
-msgid "An unknown error occurred."
-msgstr ""
-
-#: src/main-window.vala:200
+#: src/main-window.vala:197
 msgid "Nothing found, try searching again."
 msgstr ""
 
-#.
-#: src/main-window.vala:274
-msgid "An error occured while opening"
+#: src/main-window.vala:270
+#, c-format
+msgid "An error occured while opening %s"
 msgstr ""
 
-#: src/main-window.vala:300
-msgid "download queued"
+#: src/main-window.vala:296
+#, c-format
+msgid "%s download queued"
 msgstr ""
 
-#: src/main-window.vala:306
-msgid "finished downloading"
+#: src/main-window.vala:302
+#, c-format
+msgid "%s finished downloading"
 msgstr ""
 
-#: src/main-window.vala:312
-msgid "download cancelled"
+#: src/main-window.vala:308
+#, c-format
+msgid "%s download cancelled"
 msgstr ""
 
-#: src/main-window.vala:318
-msgid "could not download due to an error"
+#: src/main-window.vala:314
+#, c-format
+msgid "%s could not download due to an error"
 msgstr ""
 
-#: src/main-window.vala:324
-msgid " is already downloaded"
+#: src/main-window.vala:320
+#, c-format
+msgid "%s is already downloaded"
 msgstr ""
 
-#.
-#.
-#: src/preferences-dialog.vala:56
+#: src/preferences-dialog.vala:65
 msgid "Choose a source"
 msgstr ""
 
-#.
-#.
-#: src/preferences-dialog.vala:65
+#: src/preferences-dialog.vala:71
 msgid "Default source"
 msgstr ""
 
-#.
-#.
-#: src/preferences-dialog.vala:103
+#: src/preferences-dialog.vala:114
 msgid "Choose a system"
 msgstr ""
 
-#.
-#: src/preferences-dialog.vala:121
+#: src/preferences-dialog.vala:131
 msgid "Download directory"
 msgstr ""
 
-#.
-#: src/preferences-dialog.vala:127
+#: src/preferences-dialog.vala:136
 msgid "Download directory per system"
 msgstr ""
 
-#: src/preferences-dialog.vala:144
+#: src/preferences-dialog.vala:153
 msgid "Choose the download directory"
 msgstr ""
 
-#.
-#: src/widgets/download-popover.vala:15
+#: src/widgets/download-popover.vala:14
 msgid "No download in progress"
 msgstr ""
 
@@ -200,110 +179,90 @@ msgstr ""
 msgid "Cancelling"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:21
+#: src/widgets/game-detail-dialog.vala:20
 msgid "Close"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:25
+#: src/widgets/game-detail-dialog.vala:23
 msgid "Download"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:101
+#: src/widgets/game-detail-dialog.vala:96
 msgid "Players"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:101
+#: src/widgets/game-detail-dialog.vala:96
 msgid "Simultaneous"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:104
+#: src/widgets/game-detail-dialog.vala:98
 msgid "Year"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:107
+#: src/widgets/game-detail-dialog.vala:100
 msgid "Publisher"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:110
+#: src/widgets/game-detail-dialog.vala:102
 msgid "Serial"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:113
-#: src/widgets/game-detail-dialog.vala:217
+#: src/widgets/game-detail-dialog.vala:104
+#: src/widgets/game-detail-dialog.vala:202
 msgid "Size"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:145
+#: src/widgets/game-detail-dialog.vala:134
 msgid "Play online"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:149
+#: src/widgets/game-detail-dialog.vala:137
 msgid "See manual"
 msgstr ""
 
-#.
-#.
-#.
-#: src/widgets/game-detail-dialog.vala:212
-#: src/widgets/game-detail-dialog.vala:248
+#: src/widgets/game-detail-dialog.vala:198
+#: src/widgets/game-detail-dialog.vala:228
 msgid "CRC"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:213
-#: src/widgets/game-detail-dialog.vala:252
+#: src/widgets/game-detail-dialog.vala:199
+#: src/widgets/game-detail-dialog.vala:231
 msgid "MD5"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:214
-#: src/widgets/game-detail-dialog.vala:257
+#: src/widgets/game-detail-dialog.vala:200
+#: src/widgets/game-detail-dialog.vala:235
 msgid "SHA1"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:222
+#: src/widgets/game-detail-dialog.vala:206
 msgid "Graphics"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:225
+#: src/widgets/game-detail-dialog.vala:208
 msgid "Sound"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:228
+#: src/widgets/game-detail-dialog.vala:210
 msgid "Gameplay"
 msgstr ""
 
-#.
-#: src/widgets/game-detail-dialog.vala:231
+#: src/widgets/game-detail-dialog.vala:212
 msgid "Overall"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:231
+#: src/widgets/game-detail-dialog.vala:212
 msgid "votes"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:231
+#: src/widgets/game-detail-dialog.vala:212
 msgid "vote"
 msgstr ""
 
-#.
-#: src/widgets/search-filter-box.vala:33
+#: src/widgets/search-filter-box.vala:31
 msgid "Source"
 msgstr ""
 
-#.
-#: src/widgets/search-row.vala:41
+#: src/widgets/search-row.vala:40
 msgid "Manual available"
 msgstr ""
