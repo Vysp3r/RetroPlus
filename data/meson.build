@@ -51,9 +51,14 @@ appstream_file = i18n.merge_file(
   install_dir: join_paths(get_option('datadir'), 'metainfo')
 )
 
-appstream_util = find_program('appstream-util', required: true)
-if appstream_util.found()
-  test('Validate appstream file', appstream_util, args: ['validate', appstream_file])
+appstreamcli = find_program('appstreamcli', required: true)
+if appstreamcli.found()
+  test('Validate appstream file',
+       appstreamcli,
+       args: ['validate', '--no-net', '--explain', appstream_file.full_path()],
+       depends: appstream_file,
+       workdir: meson.current_build_dir()
+  )
 endif
 
 compile_schemas = find_program('glib-compile-schemas', required: true)
