@@ -17,11 +17,9 @@ namespace RetroPlus.Widgets {
         }
 
         construct {
-            //
             this.add_response ("close", _("Close"));
             this.set_response_appearance ("close", Adw.ResponseAppearance.DEFAULT);
 
-            //
             this.add_response ("download", _("Download"));
             this.set_response_appearance ("download", Adw.ResponseAppearance.SUGGESTED);
 
@@ -66,10 +64,8 @@ namespace RetroPlus.Widgets {
         }
 
         Gtk.Box get_info_box () {
-            //
             var system_label = new Gtk.Label (_("System") + ": " + game.system);
 
-            //
             var region_label = new Gtk.Label (_("Region") + ": ");
 
             var flags_box = new Gtk.FlowBox ();
@@ -97,22 +93,16 @@ namespace RetroPlus.Widgets {
             region_box.append (region_label);
             region_box.append (flags_box);
 
-            //
             var players_label = new Gtk.Label (_("Players") + ": " + game.max_players.to_string () + (game.simultaneous ? " " + _("Simultaneous") : ""));
 
-            //
             var year_label = new Gtk.Label (_("Year") + ": " + (game.year.to_string ()));
 
-            //
             var publisher_label = new Gtk.Label (_("Publisher") + ": " + game.publisher);
 
-            //
             var serial_label = new Gtk.Label (_("Serial") + "#: " + game.serial);
 
-            //
             download_size_label = new Gtk.Label (_("Size") + ": " + game.medias.nth_data (0).get_formatted_download_size ());
 
-            //
             var media_label = new Gtk.Label (_("Version") + ": " + (game.medias.length () == 1 ? "%.2f".printf (game.medias.nth_data (0).version) : ""));
 
             //
@@ -141,11 +131,9 @@ namespace RetroPlus.Widgets {
             media_box.append (media_label);
             if (game.medias.length () > 1)media_box.append (media_dropdown);
 
-            //
             var play_online_button = new Gtk.Button.with_label (_("Play online"));
             play_online_button.clicked.connect (on_play_online_button_clicked);
 
-            //
             var manual_button = new Gtk.Button.with_label (_("See manual"));
             manual_button.clicked.connect (on_manual_button_clicked);
 
@@ -205,29 +193,22 @@ namespace RetroPlus.Widgets {
             //
             var media = media_dropdown.get_selected_item () as Models.Media;
 
-            //
             if (media == null)return;
 
-            //
             crc_label.set_text (_("CRC") + ": " + media.crc);
             md5_label.set_text (_("MD5") + ": " + media.md5);
             sha1_label.set_text (_("SHA1") + ": " + media.sha1);
 
-            //
             download_size_label.set_text (_("Size") + ": " + media.get_formatted_download_size ());
         }
 
         Gtk.Box get_rating_box () {
-            //
             var graphics_rating_label = new Gtk.Label (_("Graphics") + ": " + "%.2f".printf (game.graphics_rating));
 
-            //
             var sound_rating_label = new Gtk.Label (_("Sound") + ": " + "%.2f".printf (game.sound_rating));
 
-            //
             var gameplay_rating_label = new Gtk.Label (_("Gameplay") + ": " + "%.2f".printf (game.gameplay_rating));
 
-            //
             var overall_rating_label = new Gtk.Label (_("Overall") + ": " + "%.2f".printf (game.overall_rating) + " (" + game.total_votes.to_string () + " " + (game.total_votes > 1 ? _("votes") : _("vote")) + ")");
 
             //
@@ -244,16 +225,13 @@ namespace RetroPlus.Widgets {
         }
 
         Gtk.Box get_hash_box () {
-            //
             crc_label = new Gtk.Label (_("CRC") + ": " + game.medias.nth_data (0).crc);
             crc_label.set_tooltip_text (game.medias.nth_data (0).crc);
 
-            //
             md5_label = new Gtk.Label (_("MD5") + ": " + game.medias.nth_data (0).md5);
             md5_label.set_ellipsize (Pango.EllipsizeMode.END);
             md5_label.set_tooltip_text (game.medias.nth_data (0).md5);
 
-            //
             sha1_label = new Gtk.Label (_("SHA1") + ": " + game.medias.nth_data (0).sha1);
             sha1_label.set_ellipsize (Pango.EllipsizeMode.END);
             sha1_label.set_tooltip_text (game.medias.nth_data (0).sha1);

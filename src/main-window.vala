@@ -29,7 +29,6 @@ namespace RetroPlus {
             download_popover.download_error.connect (on_download_error);
             download_popover.download_file_exists.connect (on_download_file_exists);
 
-            //
             var menu_model = new GLib.Menu ();
             menu_model.append (_("Preferences"), "app.show-preferences");
             menu_model.append (_("Keyboard Shortcuts"), "win.show-help-overlay");
@@ -62,22 +61,18 @@ namespace RetroPlus {
             search_filter_box.set_visible (false);
             search_filter_box.source_dropdown.notify["selected-item"].connect (on_source_dropdown_selected_item_changed);
 
-            //
             system_label = new Gtk.Label (_("System"));
             system_label.set_halign (Gtk.Align.CENTER);
             system_label.set_size_request (80, 0);
 
-            //
             var title_label = new Gtk.Label (_("Title"));
             title_label.set_halign (Gtk.Align.CENTER);
             title_label.set_hexpand (true);
 
-            //
             var region_label = new Gtk.Label (_("Region"));
             region_label.set_halign (Gtk.Align.CENTER);
             region_label.set_size_request (50, 0);
 
-            //
             var version_label = new Gtk.Label (_("Version"));
             version_label.set_halign (Gtk.Align.CENTER);
             version_label.set_size_request (55, 0);
@@ -112,7 +107,6 @@ namespace RetroPlus {
             spinner.set_halign (Gtk.Align.CENTER);
             spinner.set_valign (Gtk.Align.CENTER);
 
-            //
             status_page = new Adw.StatusPage ();
             status_page.set_description (_("Feels empty in here.\n" +
                                            "Why not search for a game?"));
@@ -188,7 +182,6 @@ namespace RetroPlus {
                 //
                 search_results = system.get_games_by_title.end (res);
 
-                //
                 if (search_results.request_error) {
                     status_page.set_icon_name ("wifi-off-symbolic");
                     status_page.set_description (_("Can't reach the servers.\n" +
@@ -273,7 +266,6 @@ namespace RetroPlus {
                     }
                 }
 
-                //
                 if (error) {
                     var toast = new Adw.Toast (_("An error occured while opening %s").printf(game.title));
 
