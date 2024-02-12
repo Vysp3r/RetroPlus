@@ -76,12 +76,7 @@ namespace RetroPlus.Utils {
                         start_text = "href=\"";
                         start = temp_line.index_of (start_text);
         
-                        if (temp_line.contains("onmouseover")) {
-                            end_text = "\" onmouseover";
-                        } else {
-                            end_text = "\">";
-                        }
-                        
+                        end_text = "\" ";
                         end = temp_line.index_of (end_text, start);
 
                         raw_id = temp_line.substring (start + start_text.length, end - (start + start_text.length));
