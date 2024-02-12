@@ -36,7 +36,6 @@ namespace RetroPlus.Widgets {
                 extra_box.append (label);
             }
 
-            //
             var manual = new Gtk.Image.from_icon_name ("book-half-symbolic");
             manual.set_tooltip_text (_("Manual available"));
 

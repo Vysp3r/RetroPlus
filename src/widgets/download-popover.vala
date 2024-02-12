@@ -11,7 +11,6 @@ namespace RetroPlus.Widgets {
         public signal void download_file_exists (Models.Game game);
 
         construct {
-            //
             var placeholder_label = new Gtk.Label (_("No download in progress"));
             placeholder_label.add_css_class ("p-10");
 

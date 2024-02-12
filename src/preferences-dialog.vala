@@ -61,14 +61,12 @@ namespace RetroPlus {
             //
             sources_model = new ListStore (typeof (Models.Source));
 
-            //
             sources_row = new Adw.ComboRow ();
             sources_row.set_title (_("Choose a source"));
             sources_row.set_factory (sources_factory);
             sources_row.set_model (sources_model);
             sources_row.notify["selected-item"].connect (on_sources_row_selected_item);
 
-            //
             var default_source_group = new Adw.PreferencesGroup ();
             default_source_group.set_title (_("Default source"));
             default_source_group.add (sources_row);
@@ -112,7 +110,6 @@ namespace RetroPlus {
             //
             systems_model = new ListStore (typeof (Models.System));
 
-            //
             systems_row = new Adw.ComboRow ();
             systems_row.set_title (_("Choose a system"));
             systems_row.set_factory (systems_factory);
@@ -130,13 +127,11 @@ namespace RetroPlus {
             directory_box.set_valign (Gtk.Align.CENTER);
             directory_box.append (directory_button);
 
-            //
             directory_row = new Adw.EntryRow ();
             directory_row.set_title (_("Download directory"));
             directory_row.set_editable (false);
             directory_row.add_suffix (directory_box);
 
-            //
             var system_directories_group = new Adw.PreferencesGroup ();
             system_directories_group.set_title (_("Download directory per system"));
             system_directories_group.add (systems_row);

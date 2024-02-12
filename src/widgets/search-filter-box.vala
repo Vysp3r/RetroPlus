@@ -13,7 +13,6 @@ namespace RetroPlus.Widgets {
             this.add_css_class ("card");
             this.add_css_class ("p-10");
 
-            //
             var system_label = new Gtk.Label (_("System") + ":");
 
             system_list_store = new ListStore (typeof (Models.System));
@@ -29,7 +28,6 @@ namespace RetroPlus.Widgets {
             system_box.append (system_label);
             system_box.append (system_dropdown);
 
-            //
             var source_label = new Gtk.Label (_("Source") + ":");
 
             source_list_store = new ListStore (typeof (Models.Source));

@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>com.vysp3r.RetroPlus</id>
 
-  <name>RetroPlus</name>
+  <name translatable="no">RetroPlus</name>
   <summary>A simple ROM downloader</summary>
   <description>
     <p>List of supported sources: </p>
@@ -17,9 +17,12 @@
   <project_license>GPL-3.0-or-later</project_license>
   <content_rating type="oars-1.1" />
 
-  <developer_name>Vysp3r</developer_name>
+  <developer_name translatable="no">Vysp3r</developer_name>
+  <translation type="gettext">com.vysp3r.RetroPlus</translation>
   <url type="homepage">https://github.com/Vysp3r/RetroPlus</url>
   <url type="bugtracker">https://github.com/Vysp3r/RetroPlus/issues</url>
+  <url type="vcs-browser">https://github.com/Vysp3r/RetroPlus</url>
+  <url type="translate">https://github.com/Vysp3r/RetroPlus/tree/main/po</url>
 
   <screenshots>
     <screenshot type="default">
@@ -30,7 +33,7 @@
 
   <releases>
     <release version="0.1.3" date="2024-02-11">
-      <description>
+      <description translatable="no">
         <ul>
           <li>Added a status page on the home page</li>
           <li>Add per system download directory setting</li>
@@ -39,21 +42,21 @@
       </description>
     </release>
     <release version="0.1.2" date="2024-02-02">
-      <description>
+      <description translatable="no">
         <ul>
           <li>Fix AppData</li>
         </ul>
       </description>
     </release>
     <release version="0.1.1" date="2024-02-02">
-      <description>
+      <description translatable="no">
         <ul>
           <li>Fix AppData</li>
         </ul>
       </description>
     </release>
     <release version="0.1.0" date="2024-02-02">
-      <description>
+      <description translatable="no">
         <ul>
           <li>Initial release</li>
         </ul>
