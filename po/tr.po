@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.vysp3r.RetroPlus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 03:14+0300\n"
-"PO-Revision-Date: 2024-02-12 03:41+0300\n"
+"POT-Creation-Date: 2024-02-12 04:02+0300\n"
+"PO-Revision-Date: 2024-02-12 04:02+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -24,7 +24,7 @@ msgid "RetroPlus"
 msgstr "RetroPlus"
 
 #: data/com.vysp3r.RetroPlus.desktop.in:5
-#: data/com.vysp3r.RetroPlus.metainfo.xml.in:6
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:6 src/application.vala:147
 msgid "A simple ROM downloader"
 msgstr "Basit ROM indirici"
 
@@ -52,6 +52,15 @@ msgid ""
 msgstr ""
 "Başlatma sırasında bir hata oluştu.\n"
 "Lütfen bunu GitHub üstünden bildirin."
+
+#: src/application.vala:153
+msgid "Special thanks to"
+msgstr "Özel teşekkürler"
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: src/application.vala:155
+msgid "translator-credits"
+msgstr "Sabri Ünal <libreajans@gmail.com>"
 
 #: src/main-window.vala:33
 msgid "Preferences"

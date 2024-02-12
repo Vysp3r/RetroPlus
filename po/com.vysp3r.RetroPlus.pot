@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.vysp3r.RetroPlus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 03:14+0300\n"
+"POT-Creation-Date: 2024-02-12 04:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgid "RetroPlus"
 msgstr ""
 
 #: data/com.vysp3r.RetroPlus.desktop.in:5
-#: data/com.vysp3r.RetroPlus.metainfo.xml.in:6
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:6 src/application.vala:147
 msgid "A simple ROM downloader"
 msgstr ""
 
@@ -47,6 +47,15 @@ msgstr ""
 msgid ""
 "An error occurred during the initialization.\n"
 "Please report this on our GitHub."
+msgstr ""
+
+#: src/application.vala:153
+msgid "Special thanks to"
+msgstr ""
+
+#. Translators: Replace "translator-credits" with your names, one name per line
+#: src/application.vala:155
+msgid "translator-credits"
 msgstr ""
 
 #: src/main-window.vala:33

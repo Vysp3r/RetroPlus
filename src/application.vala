@@ -144,13 +144,15 @@ namespace RetroPlus {
             about_dialog.set_application_name (Constants.APP_NAME);
             about_dialog.set_application_icon (Constants.APP_ID);
             about_dialog.set_version (Constants.APP_VERSION);
-            about_dialog.set_comments ("A simple ROM downloader");
+            about_dialog.set_comments (_("A simple ROM downloader"));
             about_dialog.add_link ("Github", "https://github.com/Vysp3r/RetroPlus");
             about_dialog.set_issue_url ("https://github.com/Vysp3r/RetroPlus/issues/new/choose");
             about_dialog.set_copyright ("© 2024 Vysp3r");
             about_dialog.set_license_type (Gtk.License.GPL_3_0);
             about_dialog.set_developers (devs);
-            about_dialog.add_credit_section ("Special thanks to", thanks);
+            about_dialog.add_credit_section (_("Special thanks to"), thanks);
+            // Translators: Replace "translator-credits" with your names, one name per line
+            about_dialog.set_translator_credits (_("translator-credits"));
             about_dialog.set_transient_for (this.get_active_window ());
             about_dialog.set_modal (true);
             about_dialog.present ();
