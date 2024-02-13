@@ -95,11 +95,10 @@ namespace RetroPlus.Utils {
                         //
                         var extra_start = temp_line.index_of ("redBorder", end);
 
-                        if (extra_start != -1) {
+                        if (extra_start != -1 && !temp_line.contains ("Download unavailable")) {
                             //
                             start_text = "title=\"";
                             start = temp_line.index_of (start_text, extra_start);
-    
     
                             end_text = "\">";
                             end = temp_line.index_of (end_text, start);
@@ -167,33 +166,35 @@ namespace RetroPlus.Utils {
                         end = 0;
 
                         //
-                        while (true) {
-                            //
-                            start_text = "flags/";
-                            start = temp_line.index_of (start_text, end);
-
-                            end_text = "\" class";
-                            end = temp_line.index_of (end_text, start);
-
-                            var region_flag_filename = temp_line.substring (start + start_text.length, end - (start + start_text.length));
-
-                            //
-                            start_text = "title=\"";
-                            start = temp_line.index_of (start_text, end);
-
-                            end_text = "\" style";
-                            end = temp_line.index_of (end_text, start);
-
-                            var region_title = temp_line.substring (start + start_text.length, end - (start + start_text.length));
-
-                            //
-                            var region = new Models.Region (region_title, region_flag_filename);
-
-                            //
-                            regions.append (region);
-
-                            //
-                            if (temp_line.index_of ("title", end) == -1) break;
+                        if (!temp_line.contains (">-</td>")) {
+                            while (true) {
+                                //
+                                start_text = "flags/";
+                                start = temp_line.index_of (start_text, end);
+    
+                                end_text = "\" class";
+                                end = temp_line.index_of (end_text, start);
+    
+                                var region_flag_filename = temp_line.substring (start + start_text.length, end - (start + start_text.length));
+    
+                                //
+                                start_text = "title=\"";
+                                start = temp_line.index_of (start_text, end);
+    
+                                end_text = "\" style";
+                                end = temp_line.index_of (end_text, start);
+    
+                                var region_title = temp_line.substring (start + start_text.length, end - (start + start_text.length));
+    
+                                //
+                                var region = new Models.Region (region_title, region_flag_filename);
+    
+                                //
+                                regions.append (region);
+    
+                                //
+                                if (temp_line.index_of ("title", end) == -1) break;
+                            }
                         }
                     }
 
