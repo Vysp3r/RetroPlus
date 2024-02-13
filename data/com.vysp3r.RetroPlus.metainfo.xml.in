@@ -32,6 +32,14 @@
   </screenshots>
 
   <releases>
+    <release version="0.1.4" date="2024-02-12">
+      <description translatable="no">
+        <ul>
+          <li>Appdata and translation related mega commit</li>
+          <li>Replaced ListBox by GridView to display games</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.3" date="2024-02-11">
       <description translatable="no">
         <ul>
