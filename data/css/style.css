@@ -5,3 +5,7 @@
 .search-row-extra {
     text-shadow: -1px 0 red, 0 1px red, 1px 0 red, 0 -1px red, -1px -1px red, 1px 1px red, -1px 1px red, 1px -1px red;
 }
+
+.transparent-grid {
+    background-color: transparent;
+}

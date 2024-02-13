@@ -2,7 +2,8 @@ namespace RetroPlus {
     public class MainWindow : Adw.ApplicationWindow {
         Gtk.Entry search_entry { get; set; }
         Widgets.SearchFilterBox search_filter_box { get; set; }
-        Gtk.ListBox games_list { get; set; }
+        ListStore game_list_store { get; set; }
+        Gtk.GridView game_grid { get; set; }
         Gtk.Spinner spinner { get; set; }
         Widgets.DownloadPopover download_popover { get; set; }
         Adw.ToastOverlay toast_overlay { get; set; }
@@ -32,7 +33,6 @@ namespace RetroPlus {
             var menu_model = new GLib.Menu ();
             menu_model.append (_("Preferences"), "app.show-preferences");
             menu_model.append (_("Keyboard Shortcuts"), "win.show-help-overlay");
-            //Translators: Do not translate the application name
             menu_model.append (_("About RetroPlus"), "app.show-about");
 
             //
@@ -87,19 +87,27 @@ namespace RetroPlus {
             legend_box.append (version_label);
 
             //
-            games_list = new Gtk.ListBox ();
-            games_list.set_activate_on_single_click (false);
-            games_list.set_selection_mode (Gtk.SelectionMode.SINGLE);
-            games_list.add_css_class ("boxed-list");
-            games_list.set_hexpand (true);
-            games_list.row_selected.connect (on_game_list_row_selected);
+            game_list_store = new ListStore (typeof (Models.Game));
+
+            var game_selection = new Gtk.SingleSelection (game_list_store);
+
+            var game_factory = new Gtk.SignalListItemFactory ();
+            game_factory.bind.connect (game_factory_bind);
+            game_factory.setup.connect (game_factory_setup);
+
+            game_grid = new Gtk.GridView (game_selection, game_factory);
+            game_grid.set_single_click_activate (true);
+            game_grid.set_hexpand (true);
+            game_grid.add_css_class ("transparent-grid");
+            game_grid.set_max_columns (1);
+            game_grid.activate.connect (on_game_grid_activate);
 
             //
             var scrolled_window = new Gtk.ScrolledWindow ();
             scrolled_window.set_propagate_natural_width (false);
             scrolled_window.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
             scrolled_window.set_vexpand (true);
-            scrolled_window.set_child (games_list);
+            scrolled_window.set_child (game_grid);
 
             //
             spinner = new Gtk.Spinner ();
@@ -108,8 +116,8 @@ namespace RetroPlus {
             spinner.set_valign (Gtk.Align.CENTER);
 
             status_page = new Adw.StatusPage ();
-            status_page.set_description (_("Feels empty in here.\n" +
-                                           "Why not search for a game?"));
+            status_page.set_description (_("Feels empty in here.\n"
+                                           + "Why not search for a game?"));
             status_page.set_icon_name ("search-symbolic");
             status_page.set_valign (Gtk.Align.CENTER);
 
@@ -151,6 +159,26 @@ namespace RetroPlus {
             search_filter_box.initialize (sources, systems);
         }
 
+        void game_factory_bind (Gtk.SignalListItemFactory factory, Object object) {
+            var list_item = object as Gtk.ListItem;
+
+            var game = list_item.get_item () as Models.Game;
+
+            var system = search_filter_box.system_dropdown.get_selected_item () as Models.System;
+
+            var row = list_item.get_data<Widgets.SearchRow> ("row");
+            row.initialize (game, system.id == "");
+        }
+
+        void game_factory_setup (Gtk.SignalListItemFactory factory, Object object) {
+            var list_item = object as Gtk.ListItem;
+
+            var row = new Widgets.SearchRow ();
+
+            list_item.set_data ("row", row);
+            list_item.set_child (row);
+        }
+
         void on_download_button_clicked () {
             download_popover.popup ();
         }
@@ -163,13 +191,13 @@ namespace RetroPlus {
             spinner.start ();
 
             //
-            games_list.set_sensitive (false);
+            game_grid.set_sensitive (false);
 
             //
             search_entry.set_sensitive (false);
 
             //
-            games_list.remove_all ();
+            game_list_store.remove_all ();
 
             //
             var system = search_filter_box.system_dropdown.get_selected_item () as Models.System;
@@ -184,13 +212,13 @@ namespace RetroPlus {
 
                 if (search_results.request_error) {
                     status_page.set_icon_name ("wifi-off-symbolic");
-                    status_page.set_description (_("Can't reach the servers.\n" +
-                                                   "Please report this on our GitHub if you think this is a bug."));
+                    status_page.set_description (_("Can't reach the servers.\n"
+                                                   + "Please report this on our GitHub if you think this is a bug."));
                     status_page.set_visible (true);
                 } else if (search_results.parsing_error) {
                     status_page.set_icon_name ("bug-symbolic");
-                    status_page.set_description (_("An unknown error occurred.\n" +
-                                                   "Please report this on our GitHub."));
+                    status_page.set_description (_("An unknown error occurred.\n"
+                                                   + "Please report this on our GitHub."));
                     status_page.set_visible (true);
                 } else if (search_results.games == null) {
                     status_page.set_icon_name ("emoji-frown-symbolic");
@@ -198,11 +226,7 @@ namespace RetroPlus {
                     status_page.set_visible (true);
                 } else {
                     foreach (var game in search_results.games) {
-                        //
-                        var row = new Widgets.SearchRow (game, system.id == "");
-
-                        //
-                        games_list.append (row);
+                        game_list_store.append (game);
                     }
                 }
 
@@ -210,7 +234,7 @@ namespace RetroPlus {
                 spinner.stop ();
 
                 //
-                games_list.set_sensitive (true);
+                game_grid.set_sensitive (true);
 
                 //
                 search_entry.set_sensitive (true);
@@ -221,12 +245,9 @@ namespace RetroPlus {
             if (entry_icon_position == Gtk.EntryIconPosition.SECONDARY)search_filter_box.set_visible (!search_filter_box.get_visible ());
         }
 
-        void on_game_list_row_selected (Gtk.ListBoxRow? row) {
+        void on_game_grid_activate (uint position) {
             //
-            if (row == null)return;
-
-            //
-            var game = search_results.games.nth_data (row.get_index ());
+            var game = search_results.games.nth_data (position);
 
             //
             if (game == null)return;
@@ -235,7 +256,7 @@ namespace RetroPlus {
             spinner.start ();
 
             //
-            games_list.set_sensitive (false);
+            game_grid.set_sensitive (false);
 
             //
             search_entry.set_sensitive (false);
@@ -249,7 +270,7 @@ namespace RetroPlus {
                 spinner.stop ();
 
                 //
-                games_list.set_sensitive (true);
+                game_grid.set_sensitive (true);
 
                 //
                 search_entry.set_sensitive (true);
@@ -257,7 +278,7 @@ namespace RetroPlus {
                 //
                 if (!error) {
                     if (game.medias.length () > 0) {
-                        var game_detail_modal = new Widgets.GameDetailDialog (game); // TODO Add init instead of passing
+                        var game_detail_modal = new Widgets.GameDetailDialog (game); // TODO Add init instead of passing to be able to re-use the widget
                         game_detail_modal.set_transient_for (this);
                         game_detail_modal.download_clicked.connect (on_download_started);
                         game_detail_modal.present ();
@@ -267,7 +288,7 @@ namespace RetroPlus {
                 }
 
                 if (error) {
-                    var toast = new Adw.Toast (_("An error occured while opening %s").printf(game.title));
+                    var toast = new Adw.Toast (_("An error occured while opening %s").printf (game.title));
 
                     toast_overlay.add_toast (toast);
                 }
@@ -278,7 +299,7 @@ namespace RetroPlus {
             var source = (Models.Source) search_filter_box.source_dropdown.get_selected_item ();
 
             switch (source.title) {
-            case "Vimm's Lair" :
+            case "Vimm's Lair":
                 break;
             }
         }
@@ -293,31 +314,31 @@ namespace RetroPlus {
 
             download_popover.add_download (game, media, system);
 
-            var toast = new Adw.Toast (_("%s download queued").printf(game.title));
+            var toast = new Adw.Toast (_("%s download queued").printf (game.title));
 
             toast_overlay.add_toast (toast);
         }
 
         void on_download_finished (Models.Game game) {
-            var toast = new Adw.Toast (_("%s finished downloading").printf(game.title));
+            var toast = new Adw.Toast (_("%s finished downloading").printf (game.title));
 
             toast_overlay.add_toast (toast);
         }
 
         void on_download_cancelled (Models.Game game) {
-            var toast = new Adw.Toast (_("%s download cancelled").printf(game.title));
+            var toast = new Adw.Toast (_("%s download cancelled").printf (game.title));
 
             toast_overlay.add_toast (toast);
         }
 
         void on_download_error (Models.Game game) {
-            var toast = new Adw.Toast (_("%s could not download due to an error").printf(game.title));
+            var toast = new Adw.Toast (_("%s could not download due to an error").printf (game.title));
 
             toast_overlay.add_toast (toast);
         }
 
         void on_download_file_exists (Models.Game game) {
-            var toast = new Adw.Toast (_("%s is already downloaded").printf(game.title));
+            var toast = new Adw.Toast (_("%s is already downloaded").printf (game.title));
 
             toast_overlay.add_toast (toast);
         }

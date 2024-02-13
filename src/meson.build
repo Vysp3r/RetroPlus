@@ -56,4 +56,5 @@ executable(
   constants,
   dependencies: deps,
   install: true,
+  link_args : '-lm'
 )
