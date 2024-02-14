@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> This software is currently in a **alpha** state. It can break quite a lot, and it doesn't yet have a polished, _foolproof_ UX.
+> This software is currently in an **alpha** state. It can break quite a lot, and it doesn't yet have a polished, _foolproof_ UX.
 >
 > Contributions are welcome!
 >
