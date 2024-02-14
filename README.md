@@ -1,3 +1,11 @@
+> [!IMPORTANT]
+> This software is currently in a **alpha** state. It can break quite a lot, and it doesn't yet have a polished, _foolproof_ UX.
+>
+> Contributions are welcome!
+>
+> Please, if you got into some trouble with it, just create a [new issue](https://github.com/Vysp3r/RetroPlus/issues/new?assignees=Vysp3r&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D), or contact us on [Telegram](https://t.me/RetroPlusOfficial) and [Discord](https://discord.gg/Fyf8bWexpQ).
+
+
 <h1 align="center">
     <img align="center" width=150 src="data/logo/logo.svg" />
     <br><br>
