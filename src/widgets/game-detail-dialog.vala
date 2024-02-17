@@ -225,6 +225,9 @@ namespace RetroPlus.Widgets {
         }
 
         Gtk.Box get_hash_box () {
+            var last_verification_date_label = new Gtk.Label (_("Verified") + ": " + game.last_verification_date);
+            last_verification_date_label.set_tooltip_text (game.last_verification_date);
+
             crc_label = new Gtk.Label (_("CRC") + ": " + game.medias.nth_data (0).crc);
             crc_label.set_tooltip_text (game.medias.nth_data (0).crc);
 
@@ -240,6 +243,7 @@ namespace RetroPlus.Widgets {
             var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
             box.set_valign (Gtk.Align.CENTER);
             box.set_hexpand (true);
+            box.append (last_verification_date_label);
             box.append (crc_label);
             box.append (md5_label);
             box.append (sha1_label);

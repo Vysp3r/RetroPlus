@@ -24,7 +24,8 @@ sources = [
 
   'utils/web.vala',
   'utils/filesystem.vala',
-  'utils/parser.vala',
+  
+  'utils/parsers/vimms-lair-parser.vala',
 
   'models/game.vala',
   'models/system.vala',
@@ -46,6 +47,7 @@ deps = [
   dependency('libsoup-3.0'),
   dependency('json-glib-1.0'),
   dependency('gee-0.8'),
+  dependency('libxml-2.0')
 ]
 
 executable(
