@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.vysp3r.RetroPlus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 04:02+0300\n"
+"POT-Creation-Date: 2024-02-16 21:04-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,15 +58,14 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 
-#: src/main-window.vala:33
+#: src/main-window.vala:34
 msgid "Preferences"
 msgstr ""
 
-#: src/main-window.vala:34
+#: src/main-window.vala:35
 msgid "Keyboard Shortcuts"
 msgstr ""
 
-#. Translators: Do not translate the application name
 #: src/main-window.vala:36
 msgid "About RetroPlus"
 msgstr ""
@@ -96,54 +95,59 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
-#: src/main-window.vala:111
+#: src/main-window.vala:119
 msgid ""
 "Feels empty in here.\n"
 "Why not search for a game?"
 msgstr ""
 
-#: src/main-window.vala:187
+#: src/main-window.vala:215
 msgid ""
 "Can't reach the servers.\n"
 "Please report this on our GitHub if you think this is a bug."
 msgstr ""
 
-#: src/main-window.vala:192
+#: src/main-window.vala:220
 msgid ""
 "An unknown error occurred.\n"
 "Please report this on our GitHub."
 msgstr ""
 
-#: src/main-window.vala:197
+#: src/main-window.vala:225
 msgid "Nothing found, try searching again."
 msgstr ""
 
-#: src/main-window.vala:270
+#: src/main-window.vala:291
 #, c-format
 msgid "An error occured while opening %s"
 msgstr ""
 
-#: src/main-window.vala:296
+#: src/main-window.vala:309
+#, c-format
+msgid "%s is currently missing/unavailable"
+msgstr ""
+
+#: src/main-window.vala:324
 #, c-format
 msgid "%s download queued"
 msgstr ""
 
-#: src/main-window.vala:302
+#: src/main-window.vala:329
 #, c-format
 msgid "%s finished downloading"
 msgstr ""
 
-#: src/main-window.vala:308
+#: src/main-window.vala:334
 #, c-format
 msgid "%s download cancelled"
 msgstr ""
 
-#: src/main-window.vala:314
+#: src/main-window.vala:339
 #, c-format
 msgid "%s could not download due to an error"
 msgstr ""
 
-#: src/main-window.vala:320
+#: src/main-window.vala:344
 #, c-format
 msgid "%s is already downloaded"
 msgstr ""
@@ -230,17 +234,17 @@ msgid "See manual"
 msgstr ""
 
 #: src/widgets/game-detail-dialog.vala:198
-#: src/widgets/game-detail-dialog.vala:228
+#: src/widgets/game-detail-dialog.vala:231
 msgid "CRC"
 msgstr ""
 
 #: src/widgets/game-detail-dialog.vala:199
-#: src/widgets/game-detail-dialog.vala:231
+#: src/widgets/game-detail-dialog.vala:234
 msgid "MD5"
 msgstr ""
 
 #: src/widgets/game-detail-dialog.vala:200
-#: src/widgets/game-detail-dialog.vala:235
+#: src/widgets/game-detail-dialog.vala:238
 msgid "SHA1"
 msgstr ""
 
@@ -268,10 +272,14 @@ msgstr ""
 msgid "vote"
 msgstr ""
 
+#: src/widgets/game-detail-dialog.vala:228
+msgid "Verified"
+msgstr ""
+
 #: src/widgets/search-filter-box.vala:31
 msgid "Source"
 msgstr ""
 
-#: src/widgets/search-row.vala:40
+#: src/widgets/search-row.vala:27
 msgid "Manual available"
 msgstr ""

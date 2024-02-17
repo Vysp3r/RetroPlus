@@ -5,22 +5,9 @@ namespace RetroPlus.Models {
         public bool handheld { get; private set; }
         public uint year { get; private set; }
         public string download_directory_setting_name { get; private set; }
-        public bool extra_info_loaded { get; set; }
-        public uint media_count { get; set; }
-        public uint media_total { get; set; }
-        public string media_last_synchronization_date { get; set; }
-        public unowned List<Models.Game> monthly_top_ten_downloads_list { get; set; }
-        public unowned List<Models.Game> overall_rating_list { get; set; }
-        public unowned List<Models.Game> graphics_list { get; set; }
-        public unowned List<Models.Game> sound_list { get; set; }
-        public unowned List<Models.Game> gameplay_list { get; set; }
 
         public string get_url() {
-            return "https://vimm.net/vault/" + id;
-        }
-
-        public float get_media_pourcentage() {
-            return (media_count / (float) media_total) * 100;
+            return @"https://vimm.net/vault/$id";
         }
 
         public System(string id, string title, bool handheld, uint year, string download_directory_setting_name) {
@@ -29,25 +16,6 @@ namespace RetroPlus.Models {
             this.handheld = handheld;
             this.year = year;
             this.download_directory_setting_name = download_directory_setting_name;
-        }
-
-        public bool load_extra_info(bool force_load = false) {
-            //
-            if (extra_info_loaded && !force_load)return true;
-
-            //
-            var res = "";
-            var res_valid = Utils.Web.get_request(get_url(), ref res);
-
-            //
-            if (!res_valid)return false;
-
-            //
-            var temp_system = this;
-            var parsed = Utils.Parser.parse_system_request(res, ref temp_system);
-
-            //
-            return extra_info_loaded = !parsed;
         }
 
         public class get_games_by_title_result {
@@ -72,7 +40,7 @@ namespace RetroPlus.Models {
                     result.request_error = true;
                 } else {
                     //
-                    var parsing_valid = Utils.Parser.parse_search_request(res, ref result.games);
+                    var parsing_valid = Utils.VimmsLairParser.parse_search_request(res, ref result.games);
                     if (!parsing_valid) {
                         result.parsing_error = true;
                     }

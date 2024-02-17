@@ -5,6 +5,7 @@ namespace RetroPlus.Models {
         public string system { get; set; }
         public List<Region> regions;
         public int max_players { get; set; }
+        public bool removed { get; set; }
         public bool has_max_players {
             get {
                 return max_players > 0;
@@ -119,7 +120,7 @@ namespace RetroPlus.Models {
 
                 var game = this;
 
-                if (!Utils.Parser.parse_game_request (res, ref game)) {
+                if (!Utils.VimmsLairParser.parse_game_request (res, ref game)) {
                     return output = false;
                 }
 

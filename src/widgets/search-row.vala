@@ -10,6 +10,7 @@ namespace RetroPlus.Widgets {
         construct {
             this.set_spacing (10);
             this.add_css_class ("p-10");
+            this.set_size_request (0, 60);
 
             system_label = new Gtk.Label (null);
             system_label.set_halign (Gtk.Align.CENTER);
@@ -38,7 +39,7 @@ namespace RetroPlus.Widgets {
             region_grid.set_row_homogeneous (true);
             region_grid.set_halign (Gtk.Align.CENTER);
             region_grid.set_valign (Gtk.Align.CENTER);
-            region_grid.set_size_request (50, 50);
+            region_grid.set_size_request (50, 40);
             for (var i = 1; i <= 4; i++) {
                 bool pair = (i % 2) == 0;
                 int row = pair ? 1 : 0;

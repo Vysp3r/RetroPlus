@@ -305,6 +305,13 @@ namespace RetroPlus {
         }
 
         void on_download_started (Models.Game game, Models.Media media) {
+            if (game.missing || game.removed) {
+                var toast = new Adw.Toast (_("%s is currently missing/unavailable").printf (game.title));
+                toast_overlay.add_toast (toast);
+
+                return;
+            }
+
             var system = Application.systems.get (game.system);
 
             if (system == null) {
@@ -315,31 +322,26 @@ namespace RetroPlus {
             download_popover.add_download (game, media, system);
 
             var toast = new Adw.Toast (_("%s download queued").printf (game.title));
-
             toast_overlay.add_toast (toast);
         }
 
         void on_download_finished (Models.Game game) {
             var toast = new Adw.Toast (_("%s finished downloading").printf (game.title));
-
             toast_overlay.add_toast (toast);
         }
 
         void on_download_cancelled (Models.Game game) {
             var toast = new Adw.Toast (_("%s download cancelled").printf (game.title));
-
             toast_overlay.add_toast (toast);
         }
 
         void on_download_error (Models.Game game) {
             var toast = new Adw.Toast (_("%s could not download due to an error").printf (game.title));
-
             toast_overlay.add_toast (toast);
         }
 
         void on_download_file_exists (Models.Game game) {
             var toast = new Adw.Toast (_("%s is already downloaded").printf (game.title));
-
             toast_overlay.add_toast (toast);
         }
     }
