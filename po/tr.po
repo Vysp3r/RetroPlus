@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.vysp3r.RetroPlus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-12 04:02+0300\n"
+"POT-Creation-Date: 2024-02-16 21:04-0500\n"
 "PO-Revision-Date: 2024-02-12 04:02+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: \n"
@@ -62,15 +62,14 @@ msgstr "Özel teşekkürler"
 msgid "translator-credits"
 msgstr "Sabri Ünal <libreajans@gmail.com>"
 
-#: src/main-window.vala:33
+#: src/main-window.vala:34
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: src/main-window.vala:34
+#: src/main-window.vala:35
 msgid "Keyboard Shortcuts"
 msgstr "Klavye Kısayolları"
 
-#. Translators: Do not translate the application name
 #: src/main-window.vala:36
 msgid "About RetroPlus"
 msgstr "RetroPlus Hakkında"
@@ -100,7 +99,7 @@ msgstr "Bölge"
 msgid "Version"
 msgstr "Sürüm"
 
-#: src/main-window.vala:111
+#: src/main-window.vala:119
 msgid ""
 "Feels empty in here.\n"
 "Why not search for a game?"
@@ -108,7 +107,7 @@ msgstr ""
 "Burası boş gibi.\n"
 "Neden bir oyun aramıyorsunuz?"
 
-#: src/main-window.vala:187
+#: src/main-window.vala:215
 msgid ""
 "Can't reach the servers.\n"
 "Please report this on our GitHub if you think this is a bug."
@@ -116,7 +115,7 @@ msgstr ""
 "Sunuculara ulaşılamıyor.\n"
 "Bunun bir hata olduğunu düşünüyorsanız lütfen GitHub üstünden bildirin."
 
-#: src/main-window.vala:192
+#: src/main-window.vala:220
 msgid ""
 "An unknown error occurred.\n"
 "Please report this on our GitHub."
@@ -124,36 +123,41 @@ msgstr ""
 "Bilinmeyen bir hata oluştu.\n"
 "Lütfen bunu GitHub üstünden bildirin."
 
-#: src/main-window.vala:197
+#: src/main-window.vala:225
 msgid "Nothing found, try searching again."
 msgstr "Hiçbir şey bulunamadı, tekrar aramayı deneyin."
 
-#: src/main-window.vala:270
+#: src/main-window.vala:291
 #, c-format
 msgid "An error occured while opening %s"
 msgstr "%s açılırken hata oluştu"
 
-#: src/main-window.vala:296
+#: src/main-window.vala:309
+#, c-format
+msgid "%s is currently missing/unavailable"
+msgstr ""
+
+#: src/main-window.vala:324
 #, c-format
 msgid "%s download queued"
 msgstr "%s indirme sırasına eklendi"
 
-#: src/main-window.vala:302
+#: src/main-window.vala:329
 #, c-format
 msgid "%s finished downloading"
 msgstr "%s indirildi"
 
-#: src/main-window.vala:308
+#: src/main-window.vala:334
 #, c-format
 msgid "%s download cancelled"
 msgstr "%s indirmesi iptal edildi"
 
-#: src/main-window.vala:314
+#: src/main-window.vala:339
 #, c-format
 msgid "%s could not download due to an error"
 msgstr "%s hata nedeniyle indirilemedi"
 
-#: src/main-window.vala:320
+#: src/main-window.vala:344
 #, c-format
 msgid "%s is already downloaded"
 msgstr "%s zaten indirilmiş"
@@ -240,17 +244,17 @@ msgid "See manual"
 msgstr "Kılavuza bak"
 
 #: src/widgets/game-detail-dialog.vala:198
-#: src/widgets/game-detail-dialog.vala:228
+#: src/widgets/game-detail-dialog.vala:231
 msgid "CRC"
 msgstr "CRC"
 
 #: src/widgets/game-detail-dialog.vala:199
-#: src/widgets/game-detail-dialog.vala:231
+#: src/widgets/game-detail-dialog.vala:234
 msgid "MD5"
 msgstr "MD5"
 
 #: src/widgets/game-detail-dialog.vala:200
-#: src/widgets/game-detail-dialog.vala:235
+#: src/widgets/game-detail-dialog.vala:238
 msgid "SHA1"
 msgstr "SHA1"
 
@@ -278,11 +282,15 @@ msgstr "oy"
 msgid "vote"
 msgstr "oy"
 
+#: src/widgets/game-detail-dialog.vala:228
+msgid "Verified"
+msgstr ""
+
 #: src/widgets/search-filter-box.vala:31
 msgid "Source"
 msgstr "Kaynak"
 
-#: src/widgets/search-row.vala:40
+#: src/widgets/search-row.vala:27
 msgid "Manual available"
 msgstr "Kılavuz var"
 
