@@ -7,7 +7,6 @@ namespace RetroPlus.Widgets {
         bool initialized { get; set; }
 
         construct {
-            //
             this.set_orientation (Gtk.Orientation.VERTICAL);
             this.set_spacing (10);
             this.add_css_class ("card");
@@ -37,19 +36,19 @@ namespace RetroPlus.Widgets {
             source_factory.setup.connect (source_factory_setup);
 
             source_dropdown = new Gtk.DropDown (source_list_store, null);
+            source_dropdown.set_size_request (200, 0);
             source_dropdown.set_factory (source_factory);
+            source_dropdown.notify["selected-item"].connect (on_source_selected_item);
 
             var source_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
             source_box.append (source_label);
             source_box.append (source_dropdown);
 
-            //
             var flow_box = new Gtk.FlowBox ();
             flow_box.append (system_box);
             flow_box.append (source_box);
             flow_box.set_selection_mode (Gtk.SelectionMode.NONE);
 
-            //
             this.append (flow_box);
         }
 
@@ -91,23 +90,23 @@ namespace RetroPlus.Widgets {
             list_item.set_child (title);
         }
 
-        public void initialize (Gee.Iterator<Models.Source> sources, Gee.Iterator<Models.System> systems) {
-            //
-            source_list_store.remove_all ();
+        void on_source_selected_item () {
+            system_list_store.remove_all ();
 
-            //
-            sources.foreach ((source) => {
-                source_list_store.append (source);
+            var source = (Models.Source) source_dropdown.get_selected_item ();
+
+            source.get_systems_ordered_by_name ().foreach ((system) => {
+                system_list_store.append (system);
 
                 return true;
             });
+        }
 
-            //
-            system_list_store.remove_all ();
+        public void initialize (Gee.Iterator<Models.Source> sources) {
+            source_list_store.remove_all ();
 
-            //
-            systems.foreach ((system) => {
-                system_list_store.append (system);
+            sources.foreach ((source) => {
+                source_list_store.append (source);
 
                 return true;
             });

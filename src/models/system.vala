@@ -1,97 +1,223 @@
 namespace RetroPlus.Models {
     public class System : Object {
-        public string id { get; private set; }
         public string title { get; private set; }
-        public bool handheld { get; private set; }
-        public uint year { get; private set; }
-        public string download_directory_setting_name { get; private set; }
+        public string path { get; private set; }
 
-        public string get_url() {
-            return @"https://vimm.net/vault/$id";
+        public string download_directory_setting_name() {
+            return get_download_directory_setting_name_list().get(title) + "-download-directory";
         }
 
-        public System(string id, string title, bool handheld, uint year, string download_directory_setting_name) {
-            this.id = id;
+        public System(string title, string path) {
             this.title = title;
-            this.handheld = handheld;
-            this.year = year;
-            this.download_directory_setting_name = download_directory_setting_name;
+            this.path = path;
         }
 
-        public class get_games_by_title_result {
-            public List<Models.Game> games;
-            public bool request_error;
-            public bool parsing_error;
-        }
+        public static Gee.HashMap<string, string> get_download_directory_setting_name_list() {
+            var list = new Gee.HashMap<string, string> ();
 
-        public async get_games_by_title_result get_games_by_title(string game_title) {
-            SourceFunc callback = get_games_by_title.callback;
-
-            var result = new get_games_by_title_result();
-            result.games = new List<Models.Game> ();
-
-            ThreadFunc<void> run = () => {
-                //
-                string res = "";
-
-                //
-                var res_valid = Utils.Web.get_request(@"https://vimm.net/vault/?mode=adv&p=list&system=$id&q=$game_title&players=%3E%3D&playersValue=1&simultaneous=&publisher=&year=%3D&yearValue=&rating=%3E%3D&ratingValue=&region=All&sort=Title&sortOrder=ASC", ref res);
-                if (!res_valid) {
-                    result.request_error = true;
-                } else {
-                    //
-                    var parsing_valid = Utils.VimmsLairParser.parse_search_request(res, ref result.games);
-                    if (!parsing_valid) {
-                        result.parsing_error = true;
-                    }
-                }
-
-                //
-                Idle.add((owned) callback);
-
-                //
-                return;
+            string[] setting_names = {
+                "atari-2600",
+                "atari-5200",
+                "atari-7800",
+                "atari-lynx",
+                "sega-master-system",
+                "sega-genesis",
+                "sega-32X",
+                "sega-saturn",
+                "sega-dreamcast",
+                "sega-game-gear",
+                "nintendo-nes",
+                "nintendo-snes",
+                "nintendo-64",
+                "nintendo-gamecube",
+                "nintendo-wii",
+                "nintendo-wiiware",
+                "nintendo-virutal-boy",
+                "nintendo-game-boy",
+                "nintendo-game-boy-color",
+                "nintendo-game-boy-advanced",
+                "nintendo-ds",
+                "sony-playstation",
+                "sony-playstation-2",
+                "sony-playstation-3",
+                "sony-playstation-portable",
+                "microsoft-xbox",
+                "microsoft-xbox-360",
             };
-            new Thread<bool> ("search", (owned) run);
 
-            yield;
-            return result;
+            string[] system_names = {
+                "Atari 2600",
+                "Atari 5200",
+                "Atari 7800",
+                "Lynx",
+                "Master System",
+                "Genesis",
+                "Sega 32X",
+                "Saturn",
+                "Dreamcast",
+                "Game Gear",
+                "Nintendo",
+                "Super Nintendo",
+                "Nintendo 64",
+                "GameCube",
+                "Wii",
+                "WiiWare",
+                "Virtual Boy",
+                "Game Boy",
+                "Game Boy Color",
+                "Game Boy Advance",
+                "Nintendo DS",
+                "PlayStation",
+                "PlayStation 2",
+                "PlayStation 3",
+                "PlayStation Portable",
+                "Xbox",
+                "Xbox 360",
+            };
+
+            for (var i = 0; i < setting_names.length; i++) {
+                list.set(system_names[i], setting_names[i]);
+            }
+
+            return (owned) list;
         }
 
-        public static Gee.HashMap<string, Models.System> get_systems() {
-            //
+        public static Gee.HashMap<string, Models.System> get_vimms_lair_systems() {
             var systems = new Gee.HashMap<string, Models.System> ();
 
-            //
-            var system = new System("", "All", false, 0, "");
-            systems.set(system.id, system);
+            var system = new System("All", "");
+            systems.set(system.title, system);
 
-            //
-            uint[] console_years = { 1977, 1982, 1983, 1985, 1986, 1988, 1990, 1994, 1994, 1994, 1996, 1998, 2000, 2001, 2001, 2005, 2006, 2006, 2008 };
-            string[] console_ids = { "Atari2600", "Atari5200", "NES", "SMS", "Atari7800", "Genesis", "SNES", "32X", "Saturn", "PS1", "N64", "Dreamcast", "PS2", "GameCube", "Xbox", "Xbox360", "PS3", "Wii", "WiiWare" };
-            string[] console_names = { "Atari 2600", "Atari 5200", "Nintendo", "Master System", "Atari 7800", "Genesis", "Super Nintendo", "Sega 32X", "Saturn", "PlayStation", "Nintendo 64", "Dreamcast", "PlayStation 2", "GameCube", "Xbox", "Xbox 360", "PlayStation 3", "Wii", "WiiWare" };
+            string[] paths = {
+                "Atari2600",
+                "Atari5200",
+                "Atari7800",
+                "Lynx",
+                "SMS",
+                "Genesis",
+                "32X",
+                "Saturn",
+                "Dreamcast",
+                "GG",
+                "NES",
+                "SNES",
+                "N64",
+                "GameCube",
+                "Wii",
+                "WiiWare",
+                "VB",
+                "GB",
+                "GBC",
+                "GBA",
+                "DS",
+                "PS1",
+                "PS2",
+                "PS3",
+                "PSP",
+                "Xbox",
+                "Xbox360",
+            };
 
-            for (var i = 0; i < console_names.length; i++) {
-                var setting_name = console_ids[i].ascii_down() + "-download-directory";
-                if (console_ids[i] == "32X")setting_name = "sega-".concat(setting_name); // Custom rule since a setting cannot start with a number
+            string[] names = {
+                "Atari 2600",
+                "Atari 5200",
+                "Atari 7800",
+                "Lynx",
+                "Master System",
+                "Genesis",
+                "Sega 32X",
+                "Saturn",
+                "Dreamcast",
+                "Game Gear",
+                "Nintendo",
+                "Super Nintendo",
+                "Nintendo 64",
+                "GameCube",
+                "Wii",
+                "WiiWare",
+                "Virtual Boy",
+                "Game Boy",
+                "Game Boy Color",
+                "Game Boy Advance",
+                "Nintendo DS",
+                "PlayStation",
+                "PlayStation 2",
+                "PlayStation 3",
+                "PlayStation Portable",
+                "Xbox",
+                "Xbox 360",
+            };
 
-                system = new System(console_ids[i], console_names[i], false, console_years[i], setting_name);
+            for (var i = 0; i < names.length; i++) {
+                system = new System(names[i], paths[i]);
                 systems.set(system.title, system);
             }
 
-            //
-            uint[] handheld_years = { 1989, 1989, 1990, 1995, 1998, 2001, 2004, 2004 };
-            string[] handheld_ids = { "GB", "Lynx", "GG", "VB", "GBC", "GBA", "DS", "PSP" };
-            string[] handheld_names = { "Game Boy", "Lynx", "Game Gear", "Virtual Boy", "Game Boy Color", "Game Boy Advance", "Nintendo DS", "PlayStation Portable" };
+            return (owned) systems;
+        }
 
-            for (var i = 0; i < handheld_names.length; i++) {
-                var setting_name = console_ids[i].ascii_down() + "-download-directory";
+        public static Gee.HashMap<string, Models.System> get_myrient_systems() {
+            var systems = new Gee.HashMap<string, Models.System> ();
 
-                system = new System(handheld_ids[i], handheld_names[i], true, handheld_years[i], setting_name);
+            Models.System system = null;
+
+            string[] paths = {
+                "No-Intro/Atari - 2600",
+                "No-Intro/Atari - 5200",
+                "No-Intro/Atari - 7800",
+                "No-Intro/Atari - Lynx",
+                "No-Intro/Sega - Mega Drive - Genesis",
+                "No-Intro/Sega - 32X",
+                "Redump/Sega - Saturn",
+                "Redump/Sega - Dreamcast",
+                "No-Intro/Sega - Game Gear",
+                "No-Intro/Nintendo - Nintendo Entertainment System (Headered)",
+                "No-Intro/Nintendo - Super Nintendo Entertainment System",
+                "No-Intro/Nintendo - Nintendo 64 (BigEndian)",
+                "No-Intro/Nintendo - Virtual Boy",
+                "No-Intro/Nintendo - Game Boy",
+                "No-Intro/Nintendo - Game Boy Color",
+                "No-Intro/Nintendo - Game Boy Advance",
+                "No-Intro/Nintendo - Nintendo DS (Decrypted)",
+                "Redump/Sony - PlayStation",
+                "Redump/Sony - PlayStation 2",
+                "Redump/Sony - PlayStation 3",
+                "Redump/Sony - PlayStation Portable",
+                "Redump/Microsoft - Xbox",
+                "Redump/Microsoft - Xbox 360",
+            };
+
+            string[] names = {
+                "Atari 2600",
+                "Atari 5200",
+                "Atari 7800",
+                "Lynx",
+                "Genesis",
+                "Sega 32X",
+                "Saturn",
+                "Dreamcast",
+                "Game Gear",
+                "Nintendo",
+                "Super Nintendo",
+                "Nintendo 64",
+                "Virtual Boy",
+                "Game Boy",
+                "Game Boy Color",
+                "Game Boy Advance",
+                "Nintendo DS",
+                "PlayStation",
+                "PlayStation 2",
+                "PlayStation 3",
+                "PlayStation Portable",
+                "Xbox",
+                "Xbox 360",
+            };
+
+            for (var i = 0; i < names.length; i++) {
+                system = new System(names[i], paths[i]);
                 systems.set(system.title, system);
             }
 
-            //
             return (owned) systems;
         }
     }

@@ -7,21 +7,17 @@ namespace RetroPlus {
         Adw.EntryRow directory_row { get; set; }
 
         construct {
-            //
             this.set_size_request (250, 400);
             this.set_default_size (250, 400);
 
-            //
             var page = new Adw.PreferencesPage ();
             page.add (get_default_source_group ());
             page.add (get_system_directories_group ());
 
-            //
             this.add (page);
         }
 
-        public void initialize (Gee.Iterator<Models.Source> sources, Gee.Iterator<Models.System> systems) {
-            //
+        public void initialize (Gee.Iterator<Models.Source> sources, Gee.Iterator<Gee.Map.Entry<string, string>> systems) {
             sources_model.remove_all ();
 
             var current_source_position = 0;
@@ -38,13 +34,13 @@ namespace RetroPlus {
                 return true;
             });
 
-
-
-            //
             systems_model.remove_all ();
 
-            systems.foreach ((system) => {
-                if (system.title != "All")systems_model.append (system);
+            systems.foreach ((system_entry) => {
+                if (system_entry.key != "All") {
+                    var system = new Models.System (system_entry.key, "");
+                    systems_model.append (system);
+                }
 
                 return true;
             });
@@ -53,12 +49,10 @@ namespace RetroPlus {
         }
 
         Adw.PreferencesGroup get_default_source_group () {
-            //
             var sources_factory = new Gtk.SignalListItemFactory ();
             sources_factory.bind.connect (sources_factory_bind);
             sources_factory.setup.connect (sources_factory_setup);
 
-            //
             sources_model = new ListStore (typeof (Models.Source));
 
             sources_row = new Adw.ComboRow ();
@@ -71,7 +65,6 @@ namespace RetroPlus {
             default_source_group.set_title (_("Default source"));
             default_source_group.add (sources_row);
 
-            //
             return default_source_group;
         }
 
@@ -102,12 +95,10 @@ namespace RetroPlus {
         }
 
         Adw.PreferencesGroup get_system_directories_group () {
-            //
             var systems_factory = new Gtk.SignalListItemFactory ();
             systems_factory.bind.connect (systems_factory_bind);
             systems_factory.setup.connect (systems_factory_setup);
 
-            //
             systems_model = new ListStore (typeof (Models.System));
 
             systems_row = new Adw.ComboRow ();
@@ -116,13 +107,11 @@ namespace RetroPlus {
             systems_row.set_model (systems_model);
             systems_row.notify["selected-item"].connect (on_systems_row_selected_item);
 
-            //
             var directory_button = new Gtk.Button.from_icon_name ("folder-open-symbolic");
             directory_button.add_css_class ("flat");
             directory_button.set_size_request (25, 25);
             directory_button.clicked.connect (on_directory_button_clicked);
 
-            //
             var directory_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
             directory_box.set_valign (Gtk.Align.CENTER);
             directory_box.append (directory_button);
@@ -137,14 +126,12 @@ namespace RetroPlus {
             system_directories_group.add (systems_row);
             system_directories_group.add (directory_row);
 
-            //
             return system_directories_group;
         }
 
         void on_systems_row_selected_item () {
-            var system = (Models.System) systems_row.get_selected_item ();
-
-            directory_row.set_text (Application.settings.get_string (system.download_directory_setting_name));
+            var system = systems_row.get_selected_item () as Models.System;
+            directory_row.set_text (Application.settings.get_string (system.download_directory_setting_name ()));
         }
 
         void on_directory_button_clicked () {
@@ -155,8 +142,8 @@ namespace RetroPlus {
                 try {
                     var file = file_dialog.select_folder.end (res);
                     if (file == null)return;
-                    var system = (Models.System) systems_row.get_selected_item ();
-                    Application.settings.set_string (system.download_directory_setting_name, file.get_path ());
+                    var system = systems_row.get_selected_item () as Models.System;
+                    Application.settings.set_string (system.download_directory_setting_name (), file.get_path ());
                     on_systems_row_selected_item ();
                 } catch (Error e) {
                     message (e.message);

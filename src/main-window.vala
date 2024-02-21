@@ -7,21 +7,19 @@ namespace RetroPlus {
         Gtk.Spinner spinner { get; set; }
         Widgets.DownloadPopover download_popover { get; set; }
         Adw.ToastOverlay toast_overlay { get; set; }
-        Models.System.get_games_by_title_result search_results;
+        Models.Source.get_games_by_title_result search_results;
         Gtk.Label system_label { get; set; }
+        Gtk.Box legend_box { get; set; }
         Adw.StatusPage status_page { get; set; }
 
         construct {
-            //
             this.set_title (Constants.APP_NAME);
             this.set_size_request (410, 500);
             this.set_default_size (410, 500);
 
-            //
             var download_button = new Gtk.Button.from_icon_name ("download-symbolic");
             download_button.clicked.connect (on_download_button_clicked);
 
-            //
             download_popover = new Widgets.DownloadPopover ();
             download_popover.set_parent (download_button);
             download_popover.set_autohide (true);
@@ -35,18 +33,15 @@ namespace RetroPlus {
             menu_model.append (_("Keyboard Shortcuts"), "win.show-help-overlay");
             menu_model.append (_("About RetroPlus"), "app.show-about");
 
-            //
             var menu_button = new Gtk.MenuButton ();
             menu_button.set_icon_name ("open-menu-symbolic");
             menu_button.set_menu_model (menu_model);
 
-            //
             var header = new Adw.HeaderBar ();
             header.add_css_class ("flat");
             header.pack_start (download_button);
             header.pack_end (menu_button);
 
-            //
             search_entry = new Gtk.Entry ();
             search_entry.set_hexpand (true);
             search_entry.set_placeholder_text (_("Search a game by name"));
@@ -56,7 +51,6 @@ namespace RetroPlus {
             search_entry.icon_press.connect (on_search_entry_icon_pressed);
             search_entry.activate.connect (on_search_entry_activated);
 
-            //
             search_filter_box = new Widgets.SearchFilterBox ();
             search_filter_box.set_visible (false);
             search_filter_box.source_dropdown.notify["selected-item"].connect (on_source_dropdown_selected_item_changed);
@@ -77,8 +71,7 @@ namespace RetroPlus {
             version_label.set_halign (Gtk.Align.CENTER);
             version_label.set_size_request (55, 0);
 
-            //
-            var legend_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
+            legend_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
             legend_box.set_margin_start (10);
             legend_box.set_margin_end (12);
             legend_box.append (system_label);
@@ -86,7 +79,6 @@ namespace RetroPlus {
             legend_box.append (region_label);
             legend_box.append (version_label);
 
-            //
             game_list_store = new ListStore (typeof (Models.Game));
 
             var game_selection = new Gtk.SingleSelection (game_list_store);
@@ -102,14 +94,12 @@ namespace RetroPlus {
             game_grid.set_max_columns (1);
             game_grid.activate.connect (on_game_grid_activate);
 
-            //
             var scrolled_window = new Gtk.ScrolledWindow ();
             scrolled_window.set_propagate_natural_width (false);
             scrolled_window.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
             scrolled_window.set_vexpand (true);
             scrolled_window.set_child (game_grid);
 
-            //
             spinner = new Gtk.Spinner ();
             spinner.set_size_request (50, 50);
             spinner.set_halign (Gtk.Align.CENTER);
@@ -121,20 +111,17 @@ namespace RetroPlus {
             status_page.set_icon_name ("search-symbolic");
             status_page.set_valign (Gtk.Align.CENTER);
 
-            //
             var overlay = new Gtk.Overlay ();
             overlay.set_child (scrolled_window);
             overlay.add_overlay (spinner);
             overlay.add_overlay (status_page);
 
-            //
             var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
             box.append (search_entry);
             box.append (search_filter_box);
             box.append (legend_box);
             box.append (overlay);
 
-            //
             var clamp = new Adw.Clamp ();
             clamp.set_margin_start (10);
             clamp.set_margin_end (10);
@@ -142,21 +129,18 @@ namespace RetroPlus {
             clamp.set_maximum_size (820);
             clamp.set_child (box);
 
-            //
             toast_overlay = new Adw.ToastOverlay ();
             toast_overlay.set_child (clamp);
 
-            //
             var toolbar_view = new Adw.ToolbarView ();
             toolbar_view.add_top_bar (header);
             toolbar_view.set_content (toast_overlay);
 
-            //
             this.set_content (toolbar_view);
         }
 
-        public void initialize (Gee.Iterator<Models.Source> sources, Gee.Iterator<Models.System> systems) {
-            search_filter_box.initialize (sources, systems);
+        public void initialize (Gee.Iterator<Models.Source> sources) {
+            search_filter_box.initialize (sources);
         }
 
         void game_factory_bind (Gtk.SignalListItemFactory factory, Object object) {
@@ -167,7 +151,7 @@ namespace RetroPlus {
             var system = search_filter_box.system_dropdown.get_selected_item () as Models.System;
 
             var row = list_item.get_data<Widgets.SearchRow> ("row");
-            row.initialize (game, system.id == "");
+            row.initialize (game, system.path == "");
         }
 
         void game_factory_setup (Gtk.SignalListItemFactory factory, Object object) {
@@ -184,31 +168,37 @@ namespace RetroPlus {
         }
 
         void on_search_entry_activated () {
-            //
             if (status_page.get_visible ())status_page.set_visible (false);
 
-            //
             spinner.start ();
 
-            //
             game_grid.set_sensitive (false);
 
-            //
             search_entry.set_sensitive (false);
 
-            //
             game_list_store.remove_all ();
 
-            //
             var system = search_filter_box.system_dropdown.get_selected_item () as Models.System;
 
-            //
-            system_label.set_visible (system.id == "");
+            system_label.set_visible (system.path == "");
 
-            //
-            system.get_games_by_title.begin (search_entry.get_text (), (obj, res) => {
-                //
-                search_results = system.get_games_by_title.end (res);
+            var source = search_filter_box.source_dropdown.get_selected_item () as Models.Source;
+
+            legend_box.set_visible (source.title == "Vimm's Lair");
+
+            string request_url = null;
+
+            switch (source.title) {
+            case "Vimm's Lair":
+                request_url = Models.Source.get_vimms_lair_request_url (system.path, search_entry.get_text ());
+                break;
+            case "Myrient":
+                request_url = Models.Source.get_myrient_request_url (system.path, search_entry.get_text ());
+                break;
+            }
+
+            source.get_games_by_title.begin (request_url, (obj, res) => {
+                search_results = source.get_games_by_title.end (res);
 
                 if (search_results.request_error) {
                     status_page.set_icon_name ("wifi-off-symbolic");
@@ -230,13 +220,10 @@ namespace RetroPlus {
                     }
                 }
 
-                //
                 spinner.stop ();
 
-                //
                 game_grid.set_sensitive (true);
 
-                //
                 search_entry.set_sensitive (true);
             });
         }
@@ -246,42 +233,40 @@ namespace RetroPlus {
         }
 
         void on_game_grid_activate (uint position) {
-            //
             var game = search_results.games.nth_data (position);
 
-            //
             if (game == null)return;
 
-            //
             spinner.start ();
 
-            //
             game_grid.set_sensitive (false);
 
-            //
             search_entry.set_sensitive (false);
 
-            //
             game.load.begin ((obj, res) => {
-                //
                 var error = !game.load.end (res);
 
-                //
                 spinner.stop ();
 
-                //
                 game_grid.set_sensitive (true);
 
-                //
                 search_entry.set_sensitive (true);
 
-                //
                 if (!error) {
-                    if (game.medias.length () > 0) {
-                        var game_detail_modal = new Widgets.GameDetailDialog (game); // TODO Add init instead of passing to be able to re-use the widget
-                        game_detail_modal.set_transient_for (this);
-                        game_detail_modal.download_clicked.connect (on_download_started);
-                        game_detail_modal.present ();
+                    if (game.is_valid ()) {
+                        if (game is Models.VimmsLairGame) {
+                            var vimms_lair_game_detail_dialog = new Widgets.VimmsLairGameDetailDialog (game as Models.VimmsLairGame); // TODO Add init instead of passing to be able to re-use the widget
+                            vimms_lair_game_detail_dialog.set_transient_for (this);
+                            vimms_lair_game_detail_dialog.download_clicked.connect (on_download_started);
+                            vimms_lair_game_detail_dialog.present ();
+                        } else if (game is Models.MyrientGame) {
+                            var system = (Models.System) search_filter_box.system_dropdown.get_selected_item ();
+                            var myrient_game_detail_dialog = new Widgets.MyrientGameDetailDialog ();
+                            myrient_game_detail_dialog.set_transient_for (this);
+                            myrient_game_detail_dialog.download_clicked.connect (on_download_started);
+                            myrient_game_detail_dialog.initialize (game as Models.MyrientGame, system.path);
+                            myrient_game_detail_dialog.present ();
+                        }
                     } else {
                         error = true;
                     }
@@ -304,22 +289,31 @@ namespace RetroPlus {
             }
         }
 
-        void on_download_started (Models.Game game, Models.Media media) {
-            if (game.missing || game.removed) {
-                var toast = new Adw.Toast (_("%s is currently missing/unavailable").printf (game.title));
-                toast_overlay.add_toast (toast);
+        void on_download_started (Models.Game game, string download_url) {
+            Models.System system = null;
 
-                return;
+            if (game is Models.VimmsLairGame) {
+                var source = (Models.Source) search_filter_box.source_dropdown.get_selected_item ();
+                var vimms_lair_game = (Models.VimmsLairGame) game;
+                system = source.systems.get (vimms_lair_game.system);
+
+                // TODO Find a better solution then this to display that
+                if (vimms_lair_game.missing || vimms_lair_game.removed) {
+                    var toast = new Adw.Toast (_("%s is currently missing/unavailable").printf (game.title));
+                    toast_overlay.add_toast (toast);
+
+                    return;
+                }
+            } else {
+                system = (Models.System) search_filter_box.system_dropdown.get_selected_item ();
             }
-
-            var system = Application.systems.get (game.system);
 
             if (system == null) {
                 on_download_error (game);
                 return;
             }
 
-            download_popover.add_download (game, media, system);
+            download_popover.add_download (game, download_url, Application.settings.get_string (system.download_directory_setting_name ()));
 
             var toast = new Adw.Toast (_("%s download queued").printf (game.title));
             toast_overlay.add_toast (toast);

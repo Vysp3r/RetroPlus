@@ -2,16 +2,9 @@ namespace RetroPlus {
     public class Application : Adw.Application {
         public static Settings settings;
         public static Gee.HashMap<string, Models.Source> sources;
-        public static Gee.HashMap<string, Models.System> systems;
 
         Gee.Iterator<Models.Source> get_sources_ordered_by_name () {
             return sources.values.order_by ((a, b) => {
-                return strcmp (a.title, b.title);
-            });
-        }
-
-        Gee.Iterator<Models.System> get_systems_ordered_by_name () {
-            return systems.values.order_by ((a, b) => {
                 return strcmp (a.title, b.title);
             });
         }
@@ -24,45 +17,33 @@ namespace RetroPlus {
         }
 
         public override void activate () {
-            //
             settings = new Settings ("com.vysp3r.RetroPlus");
 
-            //
             var display = Gdk.Display.get_default ();
 
-            //
             Gtk.IconTheme.get_for_display (display).add_resource_path ("/com/vysp3r/RetroPlus/icons");
 
-            //
             var css_provider = new Gtk.CssProvider ();
             css_provider.load_from_resource ("/com/vysp3r/RetroPlus/css/style.css");
 
-            //
             Gtk.StyleContext.add_provider_for_display (display, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-            //
             add_shortcuts ();
 
-            //
             if (!Models.Region.initialize ()) {
-                //
                 message ("An error occured during the initialization of the flags folder.");
 
-                //
                 var status_window = new StatusWindow ();
                 status_window.set_application (this);
-                status_window.initialize ("bug-symbolic", "", _("An error occurred during the initialization.\n" +
-                                                                "Please report this on our GitHub."));
+                status_window.initialize ("bug-symbolic", "", _("An error occurred during the initialization.\n"
+                                                                + "Please report this on our GitHub."));
                 status_window.present ();
 
-                //
                 return;
             }
 
-            //
             sources = Models.Source.get_sources ();
 
-            //
             var ordered_sources = get_sources_ordered_by_name ();
             ordered_sources.next ();
 
@@ -78,10 +59,6 @@ namespace RetroPlus {
                 settings.set_string ("default-source", default_source);
             }
 
-            //
-            systems = Models.System.get_systems ();
-
-            //
             foreach (var key in settings.settings_schema.list_keys ()) {
                 if (!key.contains ("-download-directory"))continue;
 
@@ -94,10 +71,9 @@ namespace RetroPlus {
                 }
             }
 
-            //
             var main_window = new MainWindow ();
             main_window.set_application (this);
-            main_window.initialize (get_sources_ordered_by_name (), get_systems_ordered_by_name ());
+            main_window.initialize (get_sources_ordered_by_name ());
             main_window.present ();
         }
 
@@ -121,9 +97,15 @@ namespace RetroPlus {
         }
 
         void show_preferences_dialog () {
+            var systems = Models.System.get_download_directory_setting_name_list ();
+
+            var ordered_systems = systems.order_by ((a, b) => {
+                return strcmp (a.key, b.key);
+            });
+
             var preferences_dialog = new PreferencesDialog ();
             preferences_dialog.set_transient_for (this.get_active_window ());
-            preferences_dialog.initialize (get_sources_ordered_by_name (), get_systems_ordered_by_name ());
+            preferences_dialog.initialize (get_sources_ordered_by_name (), ordered_systems);
             preferences_dialog.present ();
         }
 
@@ -137,6 +119,7 @@ namespace RetroPlus {
                 "GNOME Project https://www.gnome.org/",
                 "Bootstrap Icons https://github.com/twbs/icons",
                 "Vimm's Lair https://vimm.net/",
+                "Myrient https://myrient.erista.me/",
                 null
             };
 

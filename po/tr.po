@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.vysp3r.RetroPlus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-16 21:04-0500\n"
+"POT-Creation-Date: 2024-02-20 20:06-0500\n"
 "PO-Revision-Date: 2024-02-12 04:02+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: \n"
@@ -24,7 +24,7 @@ msgid "RetroPlus"
 msgstr "RetroPlus"
 
 #: data/com.vysp3r.RetroPlus.desktop.in:5
-#: data/com.vysp3r.RetroPlus.metainfo.xml.in:6 src/application.vala:147
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:6 src/application.vala:130
 msgid "A simple ROM downloader"
 msgstr "Basit ROM indirici"
 
@@ -45,7 +45,7 @@ msgstr "Vimm's Lair"
 msgid "Main window"
 msgstr "Ana pencere"
 
-#: src/application.vala:54
+#: src/application.vala:38
 msgid ""
 "An error occurred during the initialization.\n"
 "Please report this on our GitHub."
@@ -53,53 +53,56 @@ msgstr ""
 "Başlatma sırasında bir hata oluştu.\n"
 "Lütfen bunu GitHub üstünden bildirin."
 
-#: src/application.vala:153
+#: src/application.vala:136
 msgid "Special thanks to"
 msgstr "Özel teşekkürler"
 
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/application.vala:155
+#: src/application.vala:138
 msgid "translator-credits"
 msgstr "Sabri Ünal <libreajans@gmail.com>"
 
-#: src/main-window.vala:34
+#: src/main-window.vala:32
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: src/main-window.vala:35
+#: src/main-window.vala:33
 msgid "Keyboard Shortcuts"
 msgstr "Klavye Kısayolları"
 
-#: src/main-window.vala:36
+#: src/main-window.vala:34
 msgid "About RetroPlus"
 msgstr "RetroPlus Hakkında"
 
-#: src/main-window.vala:52
+#: src/main-window.vala:47
 msgid "Search a game by name"
 msgstr "Oyunu adına göre ara"
 
-#: src/main-window.vala:55
+#: src/main-window.vala:50
 msgid "Advanced filtering options"
 msgstr "Gelişmiş süzge seçenekleri"
 
-#: src/main-window.vala:64 src/widgets/game-detail-dialog.vala:67
-#: src/widgets/search-filter-box.vala:16
+#: src/main-window.vala:58
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:61
+#: src/widgets/search-filter-box.vala:15
 msgid "System"
 msgstr "Sistem"
 
-#: src/main-window.vala:68
+#: src/main-window.vala:62
 msgid "Title"
 msgstr "Başlık"
 
-#: src/main-window.vala:72 src/widgets/game-detail-dialog.vala:69
+#: src/main-window.vala:66
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:63
 msgid "Region"
 msgstr "Bölge"
 
-#: src/main-window.vala:76 src/widgets/game-detail-dialog.vala:106
+#: src/main-window.vala:70
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:100
 msgid "Version"
 msgstr "Sürüm"
 
-#: src/main-window.vala:119
+#: src/main-window.vala:109
 msgid ""
 "Feels empty in here.\n"
 "Why not search for a game?"
@@ -107,7 +110,7 @@ msgstr ""
 "Burası boş gibi.\n"
 "Neden bir oyun aramıyorsunuz?"
 
-#: src/main-window.vala:215
+#: src/main-window.vala:205
 msgid ""
 "Can't reach the servers.\n"
 "Please report this on our GitHub if you think this is a bug."
@@ -115,7 +118,7 @@ msgstr ""
 "Sunuculara ulaşılamıyor.\n"
 "Bunun bir hata olduğunu düşünüyorsanız lütfen GitHub üstünden bildirin."
 
-#: src/main-window.vala:220
+#: src/main-window.vala:210
 msgid ""
 "An unknown error occurred.\n"
 "Please report this on our GitHub."
@@ -123,66 +126,67 @@ msgstr ""
 "Bilinmeyen bir hata oluştu.\n"
 "Lütfen bunu GitHub üstünden bildirin."
 
-#: src/main-window.vala:225
+#: src/main-window.vala:215
 msgid "Nothing found, try searching again."
 msgstr "Hiçbir şey bulunamadı, tekrar aramayı deneyin."
 
-#: src/main-window.vala:291
+#: src/main-window.vala:276
 #, c-format
 msgid "An error occured while opening %s"
 msgstr "%s açılırken hata oluştu"
 
-#: src/main-window.vala:309
+#. TODO Find a better solution then this to display that
+#: src/main-window.vala:302
 #, c-format
 msgid "%s is currently missing/unavailable"
 msgstr ""
 
-#: src/main-window.vala:324
+#: src/main-window.vala:318
 #, c-format
 msgid "%s download queued"
 msgstr "%s indirme sırasına eklendi"
 
-#: src/main-window.vala:329
+#: src/main-window.vala:323
 #, c-format
 msgid "%s finished downloading"
 msgstr "%s indirildi"
 
-#: src/main-window.vala:334
+#: src/main-window.vala:328
 #, c-format
 msgid "%s download cancelled"
 msgstr "%s indirmesi iptal edildi"
 
-#: src/main-window.vala:339
+#: src/main-window.vala:333
 #, c-format
 msgid "%s could not download due to an error"
 msgstr "%s hata nedeniyle indirilemedi"
 
-#: src/main-window.vala:344
+#: src/main-window.vala:338
 #, c-format
 msgid "%s is already downloaded"
 msgstr "%s zaten indirilmiş"
 
-#: src/preferences-dialog.vala:65
+#: src/preferences-dialog.vala:59
 msgid "Choose a source"
 msgstr "Kaynak seçin"
 
-#: src/preferences-dialog.vala:71
+#: src/preferences-dialog.vala:65
 msgid "Default source"
 msgstr "Öntanımlı kaynak"
 
-#: src/preferences-dialog.vala:114
+#: src/preferences-dialog.vala:105
 msgid "Choose a system"
 msgstr "Sistem seçin"
 
-#: src/preferences-dialog.vala:131
+#: src/preferences-dialog.vala:120
 msgid "Download directory"
 msgstr "İndirme dizini"
 
-#: src/preferences-dialog.vala:136
+#: src/preferences-dialog.vala:125
 msgid "Download directory per system"
 msgstr "Sistem başına indirme dizini"
 
-#: src/preferences-dialog.vala:153
+#: src/preferences-dialog.vala:140
 msgid "Choose the download directory"
 msgstr "İndirme dizinini seçin"
 
@@ -202,95 +206,98 @@ msgstr "Başlatılıyor"
 msgid "Cancelling"
 msgstr "İptal ediliyor"
 
-#: src/widgets/game-detail-dialog.vala:20
+#: src/widgets/game-detail-dialogs/myrient-game-detail-dialog.vala:11
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:20
 msgid "Close"
 msgstr "Kapat"
 
-#: src/widgets/game-detail-dialog.vala:23
+#: src/widgets/game-detail-dialogs/myrient-game-detail-dialog.vala:14
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:23
 msgid "Download"
 msgstr "İndir"
 
-#: src/widgets/game-detail-dialog.vala:96
-msgid "Players"
-msgstr "Oyuncular"
-
-#: src/widgets/game-detail-dialog.vala:96
-msgid "Simultaneous"
-msgstr "Eşzamanlı"
-
-#: src/widgets/game-detail-dialog.vala:98
-msgid "Year"
-msgstr "Yıl"
-
-#: src/widgets/game-detail-dialog.vala:100
-msgid "Publisher"
-msgstr "Yayıncı"
-
-#: src/widgets/game-detail-dialog.vala:102
-msgid "Serial"
-msgstr "Seri Numarası"
-
-#: src/widgets/game-detail-dialog.vala:104
-#: src/widgets/game-detail-dialog.vala:202
+#: src/widgets/game-detail-dialogs/myrient-game-detail-dialog.vala:53
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:98
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:188
 msgid "Size"
 msgstr "Boyut"
 
-#: src/widgets/game-detail-dialog.vala:134
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:90
+msgid "Players"
+msgstr "Oyuncular"
+
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:90
+msgid "Simultaneous"
+msgstr "Eşzamanlı"
+
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:92
+msgid "Year"
+msgstr "Yıl"
+
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:94
+msgid "Publisher"
+msgstr "Yayıncı"
+
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:96
+msgid "Serial"
+msgstr "Seri Numarası"
+
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:123
 msgid "Play online"
 msgstr "Çevrim içi oyna"
 
-#: src/widgets/game-detail-dialog.vala:137
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:126
 msgid "See manual"
 msgstr "Kılavuza bak"
 
-#: src/widgets/game-detail-dialog.vala:198
-#: src/widgets/game-detail-dialog.vala:231
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:184
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:217
 msgid "CRC"
 msgstr "CRC"
 
-#: src/widgets/game-detail-dialog.vala:199
-#: src/widgets/game-detail-dialog.vala:234
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:185
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:220
 msgid "MD5"
 msgstr "MD5"
 
-#: src/widgets/game-detail-dialog.vala:200
-#: src/widgets/game-detail-dialog.vala:238
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:186
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:224
 msgid "SHA1"
 msgstr "SHA1"
 
-#: src/widgets/game-detail-dialog.vala:206
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:192
 msgid "Graphics"
 msgstr "Grafikler"
 
-#: src/widgets/game-detail-dialog.vala:208
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:194
 msgid "Sound"
 msgstr "Ses"
 
-#: src/widgets/game-detail-dialog.vala:210
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:196
 msgid "Gameplay"
 msgstr "Oynanış"
 
-#: src/widgets/game-detail-dialog.vala:212
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:198
 msgid "Overall"
 msgstr "Genel"
 
-#: src/widgets/game-detail-dialog.vala:212
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:198
 msgid "votes"
 msgstr "oy"
 
-#: src/widgets/game-detail-dialog.vala:212
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:198
 msgid "vote"
 msgstr "oy"
 
-#: src/widgets/game-detail-dialog.vala:228
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:214
 msgid "Verified"
 msgstr ""
 
-#: src/widgets/search-filter-box.vala:31
+#: src/widgets/search-filter-box.vala:30
 msgid "Source"
 msgstr "Kaynak"
 
-#: src/widgets/search-row.vala:27
+#: src/widgets/search-row.vala:28
 msgid "Manual available"
 msgstr "Kılavuz var"
 

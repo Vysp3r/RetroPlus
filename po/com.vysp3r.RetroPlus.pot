@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.vysp3r.RetroPlus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-16 21:04-0500\n"
+"POT-Creation-Date: 2024-02-20 20:06-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgid "RetroPlus"
 msgstr ""
 
 #: data/com.vysp3r.RetroPlus.desktop.in:5
-#: data/com.vysp3r.RetroPlus.metainfo.xml.in:6 src/application.vala:147
+#: data/com.vysp3r.RetroPlus.metainfo.xml.in:6 src/application.vala:130
 msgid "A simple ROM downloader"
 msgstr ""
 
@@ -43,136 +43,140 @@ msgstr ""
 msgid "Main window"
 msgstr ""
 
-#: src/application.vala:54
+#: src/application.vala:38
 msgid ""
 "An error occurred during the initialization.\n"
 "Please report this on our GitHub."
 msgstr ""
 
-#: src/application.vala:153
+#: src/application.vala:136
 msgid "Special thanks to"
 msgstr ""
 
 #. Translators: Replace "translator-credits" with your names, one name per line
-#: src/application.vala:155
+#: src/application.vala:138
 msgid "translator-credits"
 msgstr ""
 
-#: src/main-window.vala:34
+#: src/main-window.vala:32
 msgid "Preferences"
 msgstr ""
 
-#: src/main-window.vala:35
+#: src/main-window.vala:33
 msgid "Keyboard Shortcuts"
 msgstr ""
 
-#: src/main-window.vala:36
+#: src/main-window.vala:34
 msgid "About RetroPlus"
 msgstr ""
 
-#: src/main-window.vala:52
+#: src/main-window.vala:47
 msgid "Search a game by name"
 msgstr ""
 
-#: src/main-window.vala:55
+#: src/main-window.vala:50
 msgid "Advanced filtering options"
 msgstr ""
 
-#: src/main-window.vala:64 src/widgets/game-detail-dialog.vala:67
-#: src/widgets/search-filter-box.vala:16
+#: src/main-window.vala:58
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:61
+#: src/widgets/search-filter-box.vala:15
 msgid "System"
 msgstr ""
 
-#: src/main-window.vala:68
+#: src/main-window.vala:62
 msgid "Title"
 msgstr ""
 
-#: src/main-window.vala:72 src/widgets/game-detail-dialog.vala:69
+#: src/main-window.vala:66
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:63
 msgid "Region"
 msgstr ""
 
-#: src/main-window.vala:76 src/widgets/game-detail-dialog.vala:106
+#: src/main-window.vala:70
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:100
 msgid "Version"
 msgstr ""
 
-#: src/main-window.vala:119
+#: src/main-window.vala:109
 msgid ""
 "Feels empty in here.\n"
 "Why not search for a game?"
 msgstr ""
 
-#: src/main-window.vala:215
+#: src/main-window.vala:205
 msgid ""
 "Can't reach the servers.\n"
 "Please report this on our GitHub if you think this is a bug."
 msgstr ""
 
-#: src/main-window.vala:220
+#: src/main-window.vala:210
 msgid ""
 "An unknown error occurred.\n"
 "Please report this on our GitHub."
 msgstr ""
 
-#: src/main-window.vala:225
+#: src/main-window.vala:215
 msgid "Nothing found, try searching again."
 msgstr ""
 
-#: src/main-window.vala:291
+#: src/main-window.vala:276
 #, c-format
 msgid "An error occured while opening %s"
 msgstr ""
 
-#: src/main-window.vala:309
+#. TODO Find a better solution then this to display that
+#: src/main-window.vala:302
 #, c-format
 msgid "%s is currently missing/unavailable"
 msgstr ""
 
-#: src/main-window.vala:324
+#: src/main-window.vala:318
 #, c-format
 msgid "%s download queued"
 msgstr ""
 
-#: src/main-window.vala:329
+#: src/main-window.vala:323
 #, c-format
 msgid "%s finished downloading"
 msgstr ""
 
-#: src/main-window.vala:334
+#: src/main-window.vala:328
 #, c-format
 msgid "%s download cancelled"
 msgstr ""
 
-#: src/main-window.vala:339
+#: src/main-window.vala:333
 #, c-format
 msgid "%s could not download due to an error"
 msgstr ""
 
-#: src/main-window.vala:344
+#: src/main-window.vala:338
 #, c-format
 msgid "%s is already downloaded"
 msgstr ""
 
-#: src/preferences-dialog.vala:65
+#: src/preferences-dialog.vala:59
 msgid "Choose a source"
 msgstr ""
 
-#: src/preferences-dialog.vala:71
+#: src/preferences-dialog.vala:65
 msgid "Default source"
 msgstr ""
 
-#: src/preferences-dialog.vala:114
+#: src/preferences-dialog.vala:105
 msgid "Choose a system"
 msgstr ""
 
-#: src/preferences-dialog.vala:131
+#: src/preferences-dialog.vala:120
 msgid "Download directory"
 msgstr ""
 
-#: src/preferences-dialog.vala:136
+#: src/preferences-dialog.vala:125
 msgid "Download directory per system"
 msgstr ""
 
-#: src/preferences-dialog.vala:153
+#: src/preferences-dialog.vala:140
 msgid "Choose the download directory"
 msgstr ""
 
@@ -192,94 +196,97 @@ msgstr ""
 msgid "Cancelling"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:20
+#: src/widgets/game-detail-dialogs/myrient-game-detail-dialog.vala:11
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:20
 msgid "Close"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:23
+#: src/widgets/game-detail-dialogs/myrient-game-detail-dialog.vala:14
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:23
 msgid "Download"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:96
-msgid "Players"
-msgstr ""
-
-#: src/widgets/game-detail-dialog.vala:96
-msgid "Simultaneous"
-msgstr ""
-
-#: src/widgets/game-detail-dialog.vala:98
-msgid "Year"
-msgstr ""
-
-#: src/widgets/game-detail-dialog.vala:100
-msgid "Publisher"
-msgstr ""
-
-#: src/widgets/game-detail-dialog.vala:102
-msgid "Serial"
-msgstr ""
-
-#: src/widgets/game-detail-dialog.vala:104
-#: src/widgets/game-detail-dialog.vala:202
+#: src/widgets/game-detail-dialogs/myrient-game-detail-dialog.vala:53
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:98
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:188
 msgid "Size"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:134
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:90
+msgid "Players"
+msgstr ""
+
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:90
+msgid "Simultaneous"
+msgstr ""
+
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:92
+msgid "Year"
+msgstr ""
+
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:94
+msgid "Publisher"
+msgstr ""
+
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:96
+msgid "Serial"
+msgstr ""
+
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:123
 msgid "Play online"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:137
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:126
 msgid "See manual"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:198
-#: src/widgets/game-detail-dialog.vala:231
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:184
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:217
 msgid "CRC"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:199
-#: src/widgets/game-detail-dialog.vala:234
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:185
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:220
 msgid "MD5"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:200
-#: src/widgets/game-detail-dialog.vala:238
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:186
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:224
 msgid "SHA1"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:206
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:192
 msgid "Graphics"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:208
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:194
 msgid "Sound"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:210
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:196
 msgid "Gameplay"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:212
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:198
 msgid "Overall"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:212
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:198
 msgid "votes"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:212
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:198
 msgid "vote"
 msgstr ""
 
-#: src/widgets/game-detail-dialog.vala:228
+#: src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala:214
 msgid "Verified"
 msgstr ""
 
-#: src/widgets/search-filter-box.vala:31
+#: src/widgets/search-filter-box.vala:30
 msgid "Source"
 msgstr ""
 
-#: src/widgets/search-row.vala:27
+#: src/widgets/search-row.vala:28
 msgid "Manual available"
 msgstr ""
