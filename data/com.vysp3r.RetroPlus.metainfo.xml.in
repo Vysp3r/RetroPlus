@@ -32,6 +32,14 @@
   </screenshots>
 
   <releases>
+    <release version="0.1.5" date="2024-02-20">
+      <description translatable="no">
+        <ul>
+          <li>Vimm's Lair parser rework</li>
+          <li>Add Myrient as a source</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.4" date="2024-02-12">
       <description translatable="no">
         <ul>
