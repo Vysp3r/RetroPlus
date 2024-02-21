@@ -14,82 +14,62 @@ namespace RetroPlus.Widgets {
             var placeholder_label = new Gtk.Label (_("No download in progress"));
             placeholder_label.add_css_class ("p-10");
 
-            //
             download_list = new Gtk.ListBox ();
             download_list.set_placeholder (placeholder_label);
             download_list.set_vexpand (true);
             download_list.add_css_class ("boxed-list");
             download_list.set_selection_mode (Gtk.SelectionMode.NONE);
 
-            //
             var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             box.append (download_list);
 
-            //
             this.set_child (box);
         }
 
-        public void add_download (Models.Game game, Models.Media media, Models.System system) {
-            //
+        public void add_download (Models.Game game, string download_url, string download_directory) {
             var cancelled = false;
 
-            //
             var row = new DownloadRow (game);
 
-            //
             row.cancel_button.clicked.connect (() => {
-                //
                 row.set_cancelling ();
 
-                //
                 cancelled = true;
 
-                //
                 var previous_row = download_list.get_row_at_index (0) as DownloadRow;
 
-                //
                 download_list.remove (row);
 
-                //
                 download_cancelled (game);
 
-                //
                 var first_row = download_list.get_row_at_index (0) as DownloadRow;
                 if (first_row != null && previous_row == row) {
                     first_row.start_download ();
                 }
             });
 
-            //
             row.start_download.connect (() => {
-                //
                 row.set_starting ();
 
-                //
-                game.download.begin (media, Application.settings.get_string (system.download_directory_setting_name), () => cancelled, row.set_progress, row.set_download_speed, (obj, res) => {
-                    //
+                game.download.begin (download_url, download_directory, () => cancelled, row.set_progress, row.set_download_speed, (obj, res) => {
                     var download_result = game.download.end (res);
 
-                    //
                     if (cancelled)return;
 
-                    //
                     download_list.remove (row);
 
-                    //
                     switch (download_result) {
-                        case Models.Game.DownloadResults.SUCCESS:
+                        case Utils.Web.DownloadResults.SUCCESS:
                             download_finished (game);
                             break;
-                        case Models.Game.DownloadResults.FILE_EXISTS:
+                        case Utils.Web.DownloadResults.FILE_EXISTS:
                             download_file_exists (game);
                             break;
-                        case Models.Game.DownloadResults.ERROR:
+                        case Utils.Web.DownloadResults.ERROR:
                             download_error (game);
                             break;
                     }
 
-                    //
                     var first_row = download_list.get_row_at_index (0) as DownloadRow;
                     if (first_row != null) {
                         first_row.start_download ();
@@ -97,10 +77,8 @@ namespace RetroPlus.Widgets {
                 });
             });
 
-            //
             download_list.append (row);
 
-            //
             var first_row = download_list.get_row_at_index (0) as DownloadRow;
             if (first_row == row) {
                 first_row.start_download ();

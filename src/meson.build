@@ -16,15 +16,19 @@ sources = [
   'preferences-dialog.vala',
   'status-window.vala',
 
-  'widgets/game-detail-dialog.vala',
   'widgets/download-popover.vala',
-  'widgets/search-row.vala',
   'widgets/download-row.vala',
   'widgets/search-filter-box.vala',
+  'widgets/search-row.vala',
+
+  'widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala',
+  'widgets/game-detail-dialogs/myrient-game-detail-dialog.vala',
 
   'utils/web.vala',
   'utils/filesystem.vala',
+  'utils/parser.vala',
   
+  'utils/parsers/myrient-parser.vala',
   'utils/parsers/vimms-lair-parser.vala',
 
   'models/game.vala',
@@ -33,6 +37,9 @@ sources = [
   'models/region.vala',
   'models/extra.vala',
   'models/source.vala',
+
+  'models/games/myrient-game.vala',
+  'models/games/vimms-lair-game.vala',
 ]
 
 sources += gnome.compile_resources('sources',

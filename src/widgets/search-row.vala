@@ -5,6 +5,7 @@ namespace RetroPlus.Widgets {
         Gtk.Box extra_box { get; set; }
         Gtk.Image manual_image { get; set; }
         Gtk.Grid region_grid { get; set; }
+        Gtk.Box spacer { get; set; }
         Gtk.Label version_label { get; set; }
 
         construct {
@@ -62,7 +63,18 @@ namespace RetroPlus.Widgets {
             this.append (version_label);
         }
 
+        // TODO Improve the search row in a way to separate the rows by source
         public void initialize (Models.Game game, bool show_system_label) {
+
+
+            if (game is Models.VimmsLairGame) {
+                vimms_lair_initialize ((Models.VimmsLairGame) game, show_system_label);
+            } else if (game is Models.MyrientGame) {
+                myrient_initialize ((Models.MyrientGame) game);
+            }
+        }
+
+        void vimms_lair_initialize (Models.VimmsLairGame game, bool show_system_label) {
             system_label.set_text (game.system);
             system_label.set_visible (show_system_label);
 
@@ -114,7 +126,32 @@ namespace RetroPlus.Widgets {
                 });
             });
 
+            version_label.set_visible (true);
             version_label.set_text ("v" + "%.2f".printf (game.medias.nth_data (0).version));
+        }
+
+        void myrient_initialize (Models.MyrientGame game) {
+            system_label.set_visible (false);
+
+            title_label.set_text (game.title);
+            title_label.set_tooltip_text (game.title);
+
+            extra_box.set_visible (false);
+
+            manual_image.set_visible (false);
+
+            region_grid.set_visible (false);
+            for (var i = 1; i <= 4; i++) {
+                bool pair = (i % 2) == 0;
+                int row = pair ? 1 : 0;
+                int column = i > 2 ? 1 : 0;
+
+                var image = (Gtk.Image) region_grid.get_child_at (column, row);
+                image.clear ();
+                image.set_visible (false);
+            }
+
+            version_label.set_visible (false);
         }
     }
 }

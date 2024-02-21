@@ -1,6 +1,6 @@
 namespace RetroPlus.Widgets {
-    public class GameDetailDialog : Adw.MessageDialog {
-        public Models.Game game { get; construct; }
+    public class VimmsLairGameDetailDialog : Adw.MessageDialog {
+        public Models.VimmsLairGame game { get; construct; }
         public Adw.ApplicationWindow window { get; construct; }
         GLib.ListStore media_list_store { get; set; }
         Gtk.DropDown media_dropdown { get; set; }
@@ -9,10 +9,10 @@ namespace RetroPlus.Widgets {
         Gtk.Label sha1_label { get; set; }
         Gtk.Label download_size_label { get; set; }
 
-        public signal void download_clicked (Models.Game game, Models.Media media);
+        public signal void download_clicked (Models.Game game, string download_url);
         public signal void close_clicked ();
 
-        public GameDetailDialog (Models.Game game) {
+        public VimmsLairGameDetailDialog (Models.VimmsLairGame game) {
             Object (game: game);
         }
 
@@ -23,39 +23,33 @@ namespace RetroPlus.Widgets {
             this.add_response ("download", _("Download"));
             this.set_response_appearance ("download", Adw.ResponseAppearance.SUGGESTED);
 
-            //
             this.set_close_response ("close");
 
-            //
             this.response.connect (on_response);
 
-            //
             this.set_heading (game.title);
 
-            //
             var carousel = new Adw.Carousel ();
             carousel.set_interactive (true);
             carousel.append (get_info_box ());
             if (game.rated)carousel.append (get_rating_box ());
             if (game.medias.nth_data (0).has_hash)carousel.append (get_hash_box ());
 
-            //
             var carousel_indicator_dots = new Adw.CarouselIndicatorDots ();
             carousel_indicator_dots.set_carousel (carousel);
 
-            //
             var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
             box.append (carousel);
             box.append (carousel_indicator_dots);
 
-            //
             this.set_extra_child (box);
         }
 
         void on_response (string response) {
             switch (response) {
             case "download":
-                download_clicked (game, (Models.Media) media_dropdown.get_selected_item ());
+                var media = (Models.Media) media_dropdown.get_selected_item ();
+                download_clicked (game, game.get_download_url (media.id));
                 break;
             case "close":
                 close_clicked ();
@@ -105,27 +99,22 @@ namespace RetroPlus.Widgets {
 
             var media_label = new Gtk.Label (_("Version") + ": " + (game.medias.length () == 1 ? "%.2f".printf (game.medias.nth_data (0).version) : ""));
 
-            //
             media_list_store = new GLib.ListStore (typeof (Models.Media));
 
             foreach (var media in game.medias) {
                 media_list_store.append (media);
             }
 
-            //
             var media_selection_model = new Gtk.SingleSelection (media_list_store);
 
-            //
             var media_factory = new Gtk.SignalListItemFactory ();
             media_factory.bind.connect (media_factory_bind);
             media_factory.setup.connect (media_factory_setup);
 
-            //
             media_dropdown = new Gtk.DropDown (media_selection_model, null);
             media_dropdown.set_factory (media_factory);
             media_dropdown.notify["selected-item"].connect (on_media_dropdown_selected_item_changed);
 
-            //
             var media_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
             media_box.set_halign (Gtk.Align.CENTER);
             media_box.append (media_label);
@@ -137,13 +126,11 @@ namespace RetroPlus.Widgets {
             var manual_button = new Gtk.Button.with_label (_("See manual"));
             manual_button.clicked.connect (on_manual_button_clicked);
 
-            //
             var extra_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
             extra_box.set_halign (Gtk.Align.CENTER);
             if (game.support_play_online)extra_box.append (play_online_button);
             if (game.has_manual)extra_box.append (manual_button);
 
-            //
             var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
             box.set_valign (Gtk.Align.CENTER);
             box.set_hexpand (true);
@@ -157,7 +144,6 @@ namespace RetroPlus.Widgets {
             box.append (media_box);
             if (game.support_play_online || game.has_manual)box.append (extra_box);
 
-            //
             return box;
         }
 

@@ -6,6 +6,7 @@ src/preferences-dialog.vala
 src/status-window.vala
 src/widgets/download-popover.vala
 src/widgets/download-row.vala
-src/widgets/game-detail-dialog.vala
+src/widgets/game-detail-dialogs/myrient-game-detail-dialog.vala
+src/widgets/game-detail-dialogs/vimms-lair-game-detail-dialog.vala
 src/widgets/search-filter-box.vala
 src/widgets/search-row.vala
