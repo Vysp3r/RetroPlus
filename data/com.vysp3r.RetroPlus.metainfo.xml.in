@@ -18,6 +18,9 @@
   <content_rating type="oars-1.1" />
 
   <developer_name translate="no">Vysp3r</developer_name>
+  <developer id="com.vysp3r">
+    <name translate="no">Vysp3r</name>
+  </developer>
   <translation type="gettext">com.vysp3r.RetroPlus</translation>
   <url type="homepage">https://github.com/Vysp3r/RetroPlus</url>
   <url type="bugtracker">https://github.com/Vysp3r/RetroPlus/issues</url>
