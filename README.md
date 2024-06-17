@@ -35,12 +35,6 @@
     <a href="https://github.com/Vysp3r/RetroPlus/blob/main/LICENSE.md">
       <img alt="License" title="License" src="https://img.shields.io/github/license/Vysp3r/RetroPlus?label=%F0%9F%93%9C%20License" />
     </a>
-    <a href="https://t.me/RetroPlusOfficial">
-      <img alt="Telegram" title="Telegram" src="https://img.shields.io/endpoint?color=neon&style=shield&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2FRetroPlusOfficial">
-    </a>
-    <a href="https://discord.gg/Fyf8bWexpQ">
-      <img alt="Discord" title="Discord" src="https://dcbadge.vercel.app/api/server/Fyf8bWexpQ?style=flat&theme=default-inverted">
-    </a>
 </p>
 
 <p align="center">
