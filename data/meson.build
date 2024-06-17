@@ -17,15 +17,15 @@ install_data('com.vysp3r.RetroPlus.gschema.xml',
 icon_sizes = ['32', '48', '64', '128']
 foreach i : icon_sizes
   install_data(
-      join_paths('logo', 'logo.svg'),
+      join_paths('logo', 'logo.png'),
       install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons', 'hicolor', i + 'x' + i, 'apps'),
-      rename: meson.project_name() + '.svg'
+      rename: meson.project_name() + '.png'
   )
 
   install_data(
-      join_paths('logo', 'logo.svg'),
+      join_paths('logo', 'logo.png'),
       install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons', 'hicolor', i + 'x' + i + '@2', 'apps'),
-      rename: meson.project_name() + '.svg'
+      rename: meson.project_name() + '.png'
   )
 endforeach
 

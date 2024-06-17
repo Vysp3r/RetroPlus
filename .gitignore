@@ -6,3 +6,4 @@ gdb.sh
 _build/
 .flatpak/
 com.vysp3r.ProtonPlus.flatpak
+repo
